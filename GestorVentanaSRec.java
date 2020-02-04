@@ -1,6 +1,5 @@
 package ventanas;
 
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -29,8 +28,7 @@ import cuadros.CuadroPreguntaEdicionNoGuardada;
  * Gestiona los eventos de la Ventana principal de SRec
  */
 public class GestorVentanaSRec implements WindowListener, WindowStateListener {
-//Comentario
-	int x;
+
 	/**
 	 * Crea el menú de la aplicación, añadiendo todos los submenús.
 	 * 
@@ -78,9 +76,6 @@ public class GestorVentanaSRec implements WindowListener, WindowStateListener {
 		if (estadoMenu != null) {
 			setEstadoVisibilidadMenu(Ventana.thisventana.barramenu, estadoMenu);
 		}
-		Ventana.thisventana.barramenu = new JMenuBar();
-
-	
 
 		Ventana.thisventana.setJMenuBar(Ventana.thisventana.barramenu);
 	}
@@ -190,9 +185,7 @@ public class GestorVentanaSRec implements WindowListener, WindowStateListener {
 				false);
 
 		// Menú Visualización
-		String noAnimacion[] = { 
-				
-				Texto.get("MENU_VISU_19", Conf.idioma),
+		String noAnimacion[] = { Texto.get("MENU_VISU_19", Conf.idioma),
 				Texto.get("MENU_VISU_18", Conf.idioma),
 				Texto.get("MENU_VISU_10", Conf.idioma),
 				Texto.get("MENU_VISU_11", Conf.idioma),
@@ -210,9 +203,6 @@ public class GestorVentanaSRec implements WindowListener, WindowStateListener {
 		char mnMenuAnimacion = mnemotecnicos.charAt(mnemotecnicos.length() - 1);
 
 		URL iconosAnimacion[] = {
-				
-			
-				
 				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_idMetodo_des.gif"),
 				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_estadoInicial.gif"),
 				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_formato.gif"),
@@ -223,7 +213,6 @@ public class GestorVentanaSRec implements WindowListener, WindowStateListener {
 		int sepAnimacion[] = {}; // Separador debajo de la primera opción de
 		// menú (contamos desde cero)
 		KeyStroke ksAnimacion[] = {
-				
 				null,
 				null,
 				null,
@@ -487,10 +476,10 @@ public class GestorVentanaSRec implements WindowListener, WindowStateListener {
 			char mnemotecOpciones[], URL iconos[], String nombreMenu,
 			char mnemotecMenu, int separadores[], KeyStroke ks[]) {
 		JMenuItem items[] = new JMenuItem[nombreOpciones.length];
-      
+
 		JMenu menu = null;
 
-		try { 
+		try {
 
 			int i = 0, indice_opciones = 0, ultimoSubmenu = -1;
 			int separadorlista = -1;
@@ -592,7 +581,6 @@ public class GestorVentanaSRec implements WindowListener, WindowStateListener {
 				if ((separadores != null && contains(separadores, i))
 						|| separadorlista == i) {
 					menu.addSeparator();
-					
 				}
 			}
 
@@ -927,46 +915,7 @@ public class GestorVentanaSRec implements WindowListener, WindowStateListener {
 			}
 		}
 	}
-	protected static JToolBar[] creaBarrasHeramientasArch() {
-		JButton[] botones = new JButton[4];
 
-		// Grupo archivo Java
-		botones[0] = new JButton(new ImageIcon(GestorVentanaSRec.class
-				
-				.getClassLoader().getResource("imagenes/i_nuevaclase.gif")));
-		
-		botones[1] = new JButton(new ImageIcon(GestorVentanaSRec.class
-				.getClassLoader().getResource("imagenes/i_abrirclase.gif")));
-		botones[2] = new JButton(new ImageIcon(GestorVentanaSRec.class
-				.getClassLoader().getResource("imagenes/i_guardarclase.gif")));
-		botones[3] = new JButton(new ImageIcon(GestorVentanaSRec.class
-				.getClassLoader().getResource("imagenes/i_compilarclase.gif")));
-
-		GestorVentanaSRec.setToolTipTextBHH(botones);
-
-		for (int i = 0; i < botones.length; i++) {
-			botones[i].addActionListener(Ventana.thisventana);
-			botones[i].setFocusable(false);
-		}
-		JToolBar[] barras = new JToolBar[4];
-		for (int i = 0; i < barras.length; i++) {
-			barras[i] = new JToolBar(Texto.get("BARRA_HERR", Conf.idioma));
-			barras[i].setBorderPainted(true);
-			barras[i].setFloatable(false);
-
-			barras[i].setBorder(new MetalBorders.PaletteBorder());
-		}
-		Ventana.thisventana.setBotones(botones);
-		//Ventana.thisventana.habilitarOpcionesAnimacion(false);
-		
-		
-
-		// Grupo archivo java
-		for (int i = 0; i < 4; i++) {
-			barras[0].add(botones[i]);
-		}
-		return barras;
-	}
 	/**
 	 * Crea las distintas barras de herramientas de la aplicación.
 	 * 
@@ -974,89 +923,17 @@ public class GestorVentanaSRec implements WindowListener, WindowStateListener {
 	 */
 	protected static JToolBar[] creaBarrasHeramientas() {
 		// Primero creamos los botones
-		JButton[] botones = new JButton[48];
+		JButton[] botones = new JButton[37];
 
 		// Grupo archivo Java
-		int ancho = 32; // ancho en pixeles que tendra el icono escalado
-		int alto = -1; // alto (para que conserve la proporcion pasamos -1)
-
-		// Obtiene un icono en escala con las dimensiones especificadas
-		ImageIcon iconoOriginal =new ImageIcon(GestorVentanaSRec.class
-				 
-				.getClassLoader().getResource("imagenes/i_nuevaclase.gif"));
-		ImageIcon iconoEscala = new ImageIcon(iconoOriginal.getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT));
-		
-		/*botones[0] = new JButton(new ImageIcon(GestorVentanaSRec.class
-				
+		botones[0] = new JButton(new ImageIcon(GestorVentanaSRec.class
 				.getClassLoader().getResource("imagenes/i_nuevaclase.gif")));
-*/
-botones[0] = new JButton(iconoEscala);
-		
 		botones[1] = new JButton(new ImageIcon(GestorVentanaSRec.class
 				.getClassLoader().getResource("imagenes/i_abrirclase.gif")));
 		botones[2] = new JButton(new ImageIcon(GestorVentanaSRec.class
 				.getClassLoader().getResource("imagenes/i_guardarclase.gif")));
 		botones[3] = new JButton(new ImageIcon(GestorVentanaSRec.class
 				.getClassLoader().getResource("imagenes/i_compilarclase.gif")));
-		
-		botones[37] =  new JButton(new ImageIcon(GestorVentanaSRec.class
-				.getClassLoader().getResource("imagenes/i_seleccionmetodo.gif")));
-		botones[38] =  new JButton(new ImageIcon(GestorVentanaSRec.class
-				.getClassLoader().getResource("imagenes/i_nuevavisualizacion.gif")));
-		botones[39] =  new JButton(new ImageIcon(GestorVentanaSRec.class
-				.getClassLoader().getResource("imagenes/i_abrirvisualizacion.gif")));
-		botones[40] =  new JButton(new ImageIcon(GestorVentanaSRec.class
-				.getClassLoader().getResource("imagenes/i_cargargif.gif")));
-		botones[41] =  new JButton(new ImageIcon(GestorVentanaSRec.class
-				.getClassLoader().getResource("imagenes/i_guardarvisualizacion.gif")));
-		botones[42] =  new JButton(new ImageIcon(GestorVentanaSRec.class
-				.getClassLoader().getResource("imagenes/i_exportaranimacion.gif")));
-		botones[43] =  new JButton(new ImageIcon(GestorVentanaSRec.class
-				.getClassLoader().getResource("imagenes/i_exportarestados.gif")));
-		botones[44] =  new JButton(new ImageIcon(GestorVentanaSRec.class
-				.getClassLoader().getResource("imagenes/i_exportarestado.gif")));
-		botones[45] =  new JButton(new ImageIcon(GestorVentanaSRec.class
-				.getClassLoader().getResource("imagenes/i_exportar_ejecuciones.gif")));
-		botones[46] =  new JButton(new ImageIcon(GestorVentanaSRec.class
-				.getClassLoader().getResource("imagenes/i_exportartraza.gif")));
-		botones[47] =  new JButton(new ImageIcon(GestorVentanaSRec.class
-				.getClassLoader().getResource("imagenes/i_cerrar.gif")));
-		
-		
-		
-		
-		int sepArchivo[] = { 3, 8, 12 }; // Separador debajo de las cuarta,
-		// séptima y décima opción de menú
-		// (contamos desde cero)
-		KeyStroke ksArchivo[] = {
-				KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E,
-						java.awt.Event.CTRL_MASK),
-						KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S,
-								java.awt.Event.CTRL_MASK),
-								KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P,
-										java.awt.Event.CTRL_MASK),
-										KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R,
-												java.awt.Event.CTRL_MASK),
-												KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M,
-														java.awt.Event.CTRL_MASK),
-														KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N,
-																java.awt.Event.CTRL_MASK),
-																// null,
-																KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C,
-																		java.awt.Event.CTRL_MASK),
-																		KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I,
-																				java.awt.Event.CTRL_MASK),
-																				KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G,
-																						java.awt.Event.CTRL_MASK),
-																						null,
-																						null,
-																						null,
-																						null,
-																						KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T,
-																								java.awt.Event.CTRL_MASK),
-																								KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X,
-																										java.awt.Event.CTRL_MASK) };
-		
 
 		// Grupo animación
 		botones[28] = new JButton(new ImageIcon(
@@ -1156,14 +1033,8 @@ botones[0] = new JButton(iconoEscala);
 		botones[28].setEnabled(false);
 		botones[29].setEnabled(false);
 		botones[33].setEnabled(false);
-		botones[35].setEnabled(false);	
-		botones[37].setEnabled(false);
-		botones[38].setEnabled(false);
-		botones[39].setEnabled(false);
-		botones[40].setEnabled(false);
-		botones[35].setEnabled(false);
+		botones[35].setEnabled(false);		
 		
-		//37-47
 		Ventana.thisventana.setBotones(botones);
 		Ventana.thisventana.habilitarOpcionesAnimacion(false);
 		
@@ -1187,26 +1058,16 @@ botones[0] = new JButton(iconoEscala);
 		}
 
 		// Grupo archivo java
-		
 		for (int i = 0; i < 4; i++) {
 			barras[0].add(botones[i]);
-			
-			//barras[0].add(botones[37]);
-		}
-		for (int i = 37; i < 48; i++) {
-			barras[0].add(botones[i]);
-			
 		}
 
 		// Grupo animación
-		  
 		for (int i = 28; i < 30; i++) {
 			barras[1].add(botones[i]);
 		}
-		barras[0].addSeparator();
         barras[1].add(botones[35]);       
         
-		 
 		// Grupo exportación
 		barras[2].add(botones[7]);
 		barras[2].add(botones[9]);
@@ -1381,88 +1242,5 @@ botones[0] = new JButton(iconoEscala);
 		}
 		return false;
 	}
-
-	protected static JButton[] creaBotonesPrincipales() {
-		// TODO Auto-generated method stub
-		JButton[] botones = new JButton[2];
-
-		// Grupo archivo Java
-		botones[0] =new JButton();
-		botones[0].setText("Archivo");
-		botones[0].addActionListener(Ventana.thisventana);
-		botones[0].setFocusable(false);
-		// Grupo archivo Java
-				botones[1] =new JButton();
-				botones[1].setText("VIsualizacion");
-				botones[1].addActionListener(Ventana.thisventana);
-				botones[1].setFocusable(false);
-		return botones;
-	}
-
-	protected static JMenu[] crearNuevoMenu() {
-		JMenu[] menusAux = new JMenu[8];
-		Font f = new Font("gill sans", 0, 14);
-		
-		JMenu arch = new JMenu();
-		arch.setFont(f);
-		String nombreMenuArchivo = Texto.get("MENU_ARCH_N", Conf.idioma);
-		arch.setText(nombreMenuArchivo);
-		menusAux[0] = arch;
-
-		JMenu visual = new JMenu();
-		visual.setFont(f);
-		String nombreMenuVisual = Texto.get("MENU_VISU_N", Conf.idioma);
-		visual.setText(nombreMenuVisual);
-		menusAux[1] = visual;
-
-		JMenu filt = new JMenu();
-		filt.setFont(f);
-		String nombreMenuFilt = Texto.get("MENU_FILT_N", Conf.idioma);
-		filt.setText(nombreMenuFilt);
-		menusAux[2] = filt;
-
-		JMenu arb = new JMenu();
-		arb.setFont(f);
-		String nombreMenuArb = Texto.get("MENU_ARBL_N", Conf.idioma);
-		arb.setText(nombreMenuArb);
-		menusAux[3] = arb;
-
-		JMenu traz = new JMenu();
-		traz.setFont(f);
-		String nombreMenuTraz = Texto.get("MENU_TRAZ_N", Conf.idioma);
-		traz.setText(nombreMenuTraz);
-		menusAux[4] = traz;
-
-		JMenu inf = new JMenu();
-		inf.setFont(f);
-		String nombreMenuinf = Texto.get("MENU_INFO_N", Conf.idioma);
-		inf.setText(nombreMenuinf);
-		menusAux[5] = inf;
-
-		JMenu conf = new JMenu();
-		conf.setFont(f);
-		String nombreMenuConf = Texto.get("MENU_CONF_N", Conf.idioma);
-		conf.setText(nombreMenuConf);
-		menusAux[6] = conf;
-
-		JMenu ayud = new JMenu();
-		ayud.setFont(f);
-		String nombreMenuayud = Texto.get("MENU_AYUD_N", Conf.idioma);
-		ayud.setText(nombreMenuayud);
-		menusAux[7] = ayud;
-		
-	    for(int i =0;i<menusAux.length;i++) {
-	    	Ventana.thisventana.barramenu.add(menusAux[i]);
-	    }
-	    Ventana.thisventana.setJMenuBar(Ventana.thisventana.barramenu);
-		return menusAux;
-		
-		
-	}
-
-	
-	
-
-	
 
 }

@@ -1,18 +1,14 @@
 package ventanas;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.FileWriter;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.AbstractButton;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -144,11 +140,9 @@ public class Ventana extends JFrame implements ActionListener {
 	private String codigos[];
 
 	// Herramientas
-	private static  JToolBar[] barrasHerramientas= new JToolBar[8];
+	private JToolBar[] barrasHerramientas;
 	private JButton botones[];
-	private JButton botonesPrincipales[];
-    private JPanel pHerr = new JPanel();
-    private JPanel p1 = new JPanel();
+
 	private GestorOpciones gOpciones = new GestorOpciones();
 
 	public boolean barraHerramientasVisible = true;
@@ -259,7 +253,6 @@ public class Ventana extends JFrame implements ActionListener {
 				// a 59
 				,"BARRA_HERR_TTT36_OPEN","BARRA_HERR_TTT36_CLOSE",
 				"BARRA_HERR_TTT35"
-				,"MENU_ARCH_N"
 		};
 
 		this.codigos = codigos2;
@@ -290,24 +283,7 @@ public class Ventana extends JFrame implements ActionListener {
 
 		// menus
 		GestorVentanaSRec.crearMenu(this.menus);
-		JMenu[] menusAux= GestorVentanaSRec.crearNuevoMenu();
-		
-		this.habilitarMenu(menusAux);
-	
-		
-	
-	
-		
-		
-		
-		
-		
-		Ventana.thisventana.setJMenuBar(Ventana.thisventana.barramenu);
-		Ventana.thisventana.getJMenuBar().setVisible(true);
-		Ventana.thisventana.getJMenuBar().setEnabled(true);
-		
-		
-		
+
 		this.setLayout(new BorderLayout());
 
 		this.setTitle(this.getTituloGenerico());
@@ -315,37 +291,24 @@ public class Ventana extends JFrame implements ActionListener {
 
 		// Creamos la barra de herramientas
 
-		
+		JPanel pHerr = new JPanel();
 		pHerr.setLayout(new BorderLayout());
-		JPanel principal = new JPanel();
-		
-		
-		
-		
+
 		JPanel p = new JPanel();
 
 		this.barrasHerramientas = GestorVentanaSRec.creaBarrasHeramientas();
 
 		for (int i = 0; i < this.barrasHerramientas.length; i++) {
-			this.barrasHerramientas[i].setVisible(false);
-			this.barrasHerramientas[i].setEnabled(true);
 			p.add(this.barrasHerramientas[i]);
 		}
-		p.setEnabled(true);
-		this.barrasHerramientas[0].setVisible(true);
-		
-		//pHerr.add(pprincipal, BorderLayout.NORTH);
+
 		pHerr.add(p, BorderLayout.WEST);
-		
-		
-		
 
 		this.habilitarOpcionesDYV(false); // Deshabilitamos las opciones que
 		// dependen de si la clase cargada
 		// es DYV o no
-       
+
 		this.add(pHerr, BorderLayout.NORTH);
-		
 
 		// Panel de la ventana, que contendrá otros paneles para
 		// visualizaciones, etc.
@@ -387,8 +350,6 @@ public class Ventana extends JFrame implements ActionListener {
 		this.setCuadroTerminal(new CuadroTerminal(this));
 	}
 	
-
-
 	/**
 	 * Devuelve la única instancia de la ventana de la aplicación.
 	 * 
@@ -397,48 +358,6 @@ public class Ventana extends JFrame implements ActionListener {
 	public static Ventana getInstance() {
 		return thisventana;
 	}
-	
-	public static void habilitarMenu(JMenu[] menus) {
-		// TODO Auto-generated method stub
-		for(int i =0; i<menus.length;i++) {
-			AuxMouseListener(menus,i);
-		
-		}
-	}
-	private static void AuxMouseListener(JMenu[] menus,int i) {
-		// TODO Auto-generated method stub
-		menus[i].addMouseListener(new java.awt.event.MouseAdapter() {
-
-			public void mouseClicked(java.awt.event.MouseEvent evt) {
-
-				menuMouseClicked(evt, i);
-			}
-		});
-		
-	}
-
-
-
-	private static void menuMouseClicked(java.awt.event.MouseEvent evt,int indice) {
-		int i = barraHerramientasActiva();
-		barrasHerramientas[i].setVisible(false);
-		barrasHerramientas[indice].setVisible(true);
-		barrasHerramientas[indice].setEnabled(true);
-		
-			
-		}
-	
-	private static int barraHerramientasActiva() {
-		// TODO Auto-generated method stub
-		int i=0;
-		int tamaño=barrasHerramientas.length;
-		while(barrasHerramientas[i].isVisible()==false&&tamaño-1>=i) {
-			i++;
-		}
-		return i;
-	}
-
-
 
 	@Override
 	public synchronized void actionPerformed(ActionEvent e) {
@@ -474,10 +393,7 @@ public class Ventana extends JFrame implements ActionListener {
 		if (fuente instanceof JMenuItem || fuente instanceof JCheckBoxMenuItem) {
 			// Botones Menú Archivo //////////////
 			String textoFuente = ((JMenuItem) fuente).getText();
-			
-			
-			
-			
+
 			// Archivo > Nueva clase
 			if (textoFuente.equals(this.textos[0])) {
 				if (Conf.fichero_log) {
@@ -1292,18 +1208,7 @@ public class Ventana extends JFrame implements ActionListener {
 
 		// Si se ha pulsado un botón de la barra de herramientas...
 		else if (fuente instanceof JButton) {
-			if(((JButton) fuente).getText() == "Archivo") {
-				
-				this.barrasHerramientas[0].setVisible(false);
-				this.barrasHerramientas[1].setVisible(true);
-				
 
-				//this.habilitarOpcionesDYV(false); // Deshabilitamos las opciones que
-				// dependen de si la clase cargada
-				// es DYV o no
-
-				this.add(pHerr, BorderLayout.NORTH);
-			}
 			if (fuente == this.botones[0]) // Archivo > Nueva clase
 			{
 				if (Conf.fichero_log) {
