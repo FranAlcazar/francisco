@@ -18,21 +18,29 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.border.TitledBorder;
-
+import javax.swing.colorchooser.AbstractColorChooserPanel;
+import javax.swing.plaf.basic.BasicComboBoxUI;
+import javax.swing.plaf.basic.BasicComboPopup;
+import javax.swing.plaf.basic.BasicScrollBarUI;
+import javax.swing.plaf.basic.ComboPopup;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.LayoutStyle;
 import javax.swing.SwingUtilities;
 
 import conf.*;
+import javafx.scene.layout.Border;
 import botones.*;
 import opciones.*;
 import utilidades.*;
@@ -47,9 +55,11 @@ import ventanas.*;
  */
 public class CuadroOpcionConfVisualizacion extends Thread implements
 		ActionListener, KeyListener, MouseListener {
-
-	private static final int ANCHO_CUADRO = 900;
-	private static final int ALTO_CUADRO = 485;
+	
+	private static final int ANCHO_CUADRO = 685;//Original 900 Ingles 675
+	
+	
+	private static final int ALTO_CUADRO = 485;// 485;
 	private static final int ANCHO_CUADRO_NO_WINDOWS = 900;
 	private static final int ALTO_CUADRO_NO_WINDOWS = 465;
 
@@ -169,6 +179,7 @@ public class CuadroOpcionConfVisualizacion extends Thread implements
 		};
 
 		String textos[] = Texto.get(codigos, Conf.idioma);
+		
 
 		this.cp = new CuadroProgreso(this.ventana, Texto.get("CP_ESPERE",
 				Conf.idioma), CREANDO_PANEL, 0);
@@ -192,6 +203,7 @@ public class CuadroOpcionConfVisualizacion extends Thread implements
 		// Panel Izquierda
 		JPanel panelIzquierda = new JPanel();
 		panelIzquierda.setLayout(new BorderLayout());
+		
 
 		// Panel checkbox modo
 		JPanel pCheckModo1 = new JPanel();
@@ -209,6 +221,7 @@ public class CuadroOpcionConfVisualizacion extends Thread implements
 		ButtonGroup bg1 = new ButtonGroup();
 
 		this.selectores1[0] = new JRadioButton(textos[2]);
+		
 		this.selectores1[1] = new JRadioButton(textos[3]);
 
 		this.selectores1[2] = new JRadioButton(textos[5]);
@@ -241,8 +254,12 @@ public class CuadroOpcionConfVisualizacion extends Thread implements
 			panelFila[i].add(this.panelesColores1[i], BorderLayout.EAST);
 			panelSeleccionColores.add(panelFila[i]);
 		}
-		panelSeleccionColores.setPreferredSize(new Dimension(270, 300));
-
+		//Original panelSeleccionColores.setPreferredSize(new Dimension(270, 300));
+		//Ingles panelSeleccionColores.setPreferredSize(new Dimension(200, 300));
+		if(Conf.idioma.equals("es")) {
+			panelSeleccionColores.setPreferredSize(new Dimension(180, 300));
+		}
+		else {panelSeleccionColores.setPreferredSize(new Dimension(200, 300));}
 		// Panel Degradados
 		JPanel panelDegradados1 = new JPanel();
 		panelDegradados1.setBorder(new TitledBorder(textos[13]));
@@ -255,7 +272,7 @@ public class CuadroOpcionConfVisualizacion extends Thread implements
 		panelIzquierda.add(pCheckModo1, BorderLayout.NORTH);
 		panelIzquierda.add(panelSeleccionColores, BorderLayout.CENTER);
 		panelIzquierda.add(panelDegradados1, BorderLayout.SOUTH);
-
+		
 		this.cp.setValores(CREANDO_PANEL, 15);
 
 		// Panel Derecha
@@ -263,11 +280,38 @@ public class CuadroOpcionConfVisualizacion extends Thread implements
 		panelDerecha.setLayout(new BorderLayout());
 
 		this.jcc1 = new JColorChooser(new Color(0, 0, 0));
+		Dimension d= new Dimension();
+		Dimension d12= new Dimension();
+		//Ingles d.setSize(450, 300);
+		//Ingles d12.setSize(425, 200);
+		 d.setSize(434, 300);
+		 d12.setSize(430, 200);
+		String idioma =Conf.idioma;
+		this.jcc1.setPreferredSize(d);
+		
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	AbstractColorChooserPanel[] ab=	this.jcc1.getChooserPanels();
+	for(int i =1;i<ab.length;i++) {
+		ab[i].setPreferredSize(d12);
+		
+		
+	}
+	jcc1.setChooserPanels(ab);
 		this.jcc1.addMouseListener(this);
+		
 
 		// Panel Botones Asignar y Borrar
 		JPanel panelBotonesDerecha = new JPanel();
 		this.asignar1 = new BotonTexto(textos[15]);
+		
 		this.resetear1 = new BotonTexto(textos[16]);
 
 		panelBotonesDerecha.add(this.asignar1);
@@ -282,13 +326,16 @@ public class CuadroOpcionConfVisualizacion extends Thread implements
 		panelDerecha.add(this.jcc1, BorderLayout.NORTH);
 		panelDerecha.add(panelBotonesDerecha, BorderLayout.SOUTH);
 
+
 		// Panel pestana color
 		JPanel panelPestana1 = new JPanel();
 		panelPestana1.setLayout(new BorderLayout());
+		
 		panelPestana1.add(panelIzquierda, BorderLayout.WEST);
 		panelPestana1.add(panelDerecha, BorderLayout.EAST);
-
+		
 		this.pestanas.add(textos[17], panelPestana1);
+		
 
 		this.cp.setValores(CREANDO_PANEL, 20);
 		// PESTAÑA 2 . MODO DE COLORES QUE DISTINGUE ENTRE NODOS DE MÉTODOS
@@ -309,7 +356,7 @@ public class CuadroOpcionConfVisualizacion extends Thread implements
 		JPanel panelSeleccionColores2 = new JPanel();
 		panelSeleccionColores2.setBorder(new TitledBorder(textos[0]));
 		panelSeleccionColores2.setLayout(new GridLayout(NUM_SELECTORES_2, 1));
-
+		
 		ButtonGroup bg2 = new ButtonGroup();
 		this.selectores2[0] = new JRadioButton(Texto.get("COCV_COLOR",
 				Conf.idioma)
@@ -359,8 +406,9 @@ public class CuadroOpcionConfVisualizacion extends Thread implements
 			panelFila2[i].add(this.panelesColores2[i], BorderLayout.EAST);
 			panelSeleccionColores2.add(panelFila2[i]);
 		}
-		panelSeleccionColores2.setPreferredSize(new Dimension(270, 300));
-
+		//panelSeleccionColores2.setPreferredSize(new Dimension(270, 300));
+		//panelSeleccionColores2.setSize(220,300);
+		panelSeleccionColores2.setPreferredSize(new Dimension(230, 300));
 		// Panel degradados
 		JPanel panelDegradados2 = new JPanel();
 		panelDegradados2.setBorder(new TitledBorder(textos[13]));
@@ -383,8 +431,17 @@ public class CuadroOpcionConfVisualizacion extends Thread implements
 
 		// JColorChooser
 		this.jcc2 = new JColorChooser(new Color(0, 0, 0));
+		
+		AbstractColorChooserPanel[] ab2=this.jcc2.getChooserPanels();
+		for(int i =1;i<ab2.length;i++) {
+			ab2[i].setPreferredSize(d12);
+			
+			
+		}
+		//Original d2.setSize(450, 300);
+		this.jcc2.setPreferredSize(d);
 		this.jcc2.addMouseListener(this);
-
+		
 		// Panel Botones Asignar y Borrar
 		JPanel panelBotonesDerecha2 = new JPanel();
 		this.asignar2 = new BotonTexto(textos[15]);
@@ -422,7 +479,8 @@ public class CuadroOpcionConfVisualizacion extends Thread implements
 		
 		JPanel panelSeleccionColores3 = new JPanel();
 		panelSeleccionColores3.setBorder(new TitledBorder(textos[0]));
-		panelSeleccionColores3.setPreferredSize(new Dimension(270, 300));
+		//panelSeleccionColores3.setPreferredSize(new Dimension(270, 300));
+		panelSeleccionColores3.setPreferredSize(new Dimension(230, 300));
 		
 		ButtonGroup bg3 = new ButtonGroup();
 		this.selectores3[0] = new JRadioButton(textos[1]);
@@ -477,7 +535,6 @@ public class CuadroOpcionConfVisualizacion extends Thread implements
 		this.cp.setValores(CREANDO_PANEL, 45);
 		JPanel panelFila3[] = new JPanel[NUM_SELECTORES_3];
 		for (int i = 0; i < NUM_SELECTORES_3; i++) {
-			//	TODO Esto hay que cambiarlo, eliminando los selectores, 
 			//	textos y códigos estos radio buttons, no ocultándolos
 			if(!this.selectores3[i].isVisible()){
 				continue;
@@ -543,7 +600,11 @@ public class CuadroOpcionConfVisualizacion extends Thread implements
 		// JColorChooser
 		this.jcc3 = new JColorChooser(new Color(0, 0, 0));
 		this.jcc3.addMouseListener(this);
-
+		this.jcc3.setPreferredSize(new Dimension(430, 300));
+		AbstractColorChooserPanel[] ab3=this.jcc3.getChooserPanels();
+		for(int i =1;i<ab3.length;i++) {
+			ab3[i].setPreferredSize(d12);
+			}
 		// Panel Botones Asignar y Borrar
 		JPanel panelBotonesDerecha3 = new JPanel();
 		this.asignar3 = new BotonTexto(textos[15]);
@@ -1005,7 +1066,28 @@ public class CuadroOpcionConfVisualizacion extends Thread implements
 		for (int i = 0; i < 73; i++) {
 			this.fuentesTamTraza.addItem("" + (i + 8));
 		}
+		
 
+
+		Dimension dBotonTrazas = new Dimension();
+		dBotonTrazas.setSize(100
+				, 20);
+		this.fuentesTraza.setPreferredSize(dBotonTrazas);
+		//Codigo para que el botón de fuentes de traza tenga un scrollbar horizontal
+		this.fuentesTraza.setUI(new BasicComboBoxUI() {
+            @Override
+            protected ComboPopup createPopup() {
+                return new BasicComboPopup(fuentesTraza) {
+                    @Override
+                    protected JScrollPane createScroller() {
+                        JScrollPane scroller = new JScrollPane(list, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                                JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+                       
+                        return scroller;
+                    }
+                };
+            }
+        });
 		this.fuentesTraza.addActionListener(this);
 		this.fuentesTamTraza.addActionListener(this);
 
@@ -1017,12 +1099,15 @@ public class CuadroOpcionConfVisualizacion extends Thread implements
 		linea1Traza.setLayout(new BorderLayout());
 		linea1Traza.add(etiqFuenteTraza, BorderLayout.WEST);
 		linea1Traza.add(this.fuentesTraza, BorderLayout.EAST);
-
+		
+		Dimension dPanelTrazas = new Dimension();
+		dPanelTrazas.setSize(150, 70);
+		
 		JPanel linea2Traza = new JPanel();
 		linea2Traza.setLayout(new BorderLayout());
 		linea2Traza.add(etiqTFTraza, BorderLayout.WEST);
 		linea2Traza.add(tamFormaTraza, BorderLayout.EAST);
-
+		panelFuenteTraza.setPreferredSize(dPanelTrazas);
 		panelFuenteTraza.add(linea1Traza, BorderLayout.NORTH);
 		panelFuenteTraza.add(linea2Traza, BorderLayout.SOUTH);
 		
@@ -1108,7 +1193,7 @@ public class CuadroOpcionConfVisualizacion extends Thread implements
 			this.dialogo.setLocation(coord[0], coord[1]);
 		}
 		this.cp.cerrar();
-		this.dialogo.setResizable(false);
+		this.dialogo.setResizable(true);
 		this.dialogo.setVisible(true);
 
 	}
