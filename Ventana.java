@@ -475,10 +475,10 @@ public class Ventana extends JFrame implements ActionListener {
 				}
 			}
 
-			// Archivo > Asignar parámetros y lanzar animación
+			//Visualizacion > Asignar parámetros y lanzar animación
 			else if (textoFuente.equals(this.textos[41])) {
 				if (Conf.fichero_log) {
-					this.log_write("Archivo > Asignar parámetros y lanzar animación.");
+					this.log_write("Visualizacion > Asignar parámetros y lanzar animación.");
 				}
 				if (this.claseAlgoritmo != null) {
 					if (this.clasePendienteGuardar
@@ -1264,7 +1264,7 @@ public class Ventana extends JFrame implements ActionListener {
 					new CuadroPreguntaNuevaVisualizacion(this,
 							"procesar de nuevo");
 				}
-			} else if (fuente == this.botones[28]) // Archivo > Seleccionar
+			} else if (fuente == this.botones[28]) // Visualizacion > Seleccionar
 				// Método
 			{
 				if (Conf.fichero_log) {
@@ -1281,7 +1281,7 @@ public class Ventana extends JFrame implements ActionListener {
 					new CuadroError(this, Texto.get("ERROR_VISU", Conf.idioma),
 							Texto.get("ERROR_NOARCHPROC", Conf.idioma));
 				}
-			} else if (fuente == this.botones[29]) // Archivo > Asignar
+			} else if (fuente == this.botones[29]) // Visualizacion > Asignar
 				// Parámetros y lanzar animación
 			{
 				if (Conf.fichero_log) {

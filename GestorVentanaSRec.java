@@ -462,24 +462,66 @@ public class GestorVentanaSRec implements WindowListener, WindowStateListener {
 		activaChecks(menus);
 
 		// Adición de menús.
-		int ancho=10;
-		int alto=10;
+		int ancho=14;
+		int alto=14;
 		//Añade icono al menu Archivo
 		ImageIcon archivo1 = new ImageIcon(new ImageIcon(GestorVentanaSRec.class
-				.getClassLoader().getResource("imagenes/i_nuevaclase.gif")).getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT));
+				.getClassLoader().getResource("imagenes/i_abrirvisualizacion.gif")).getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT));
 		menus[0].setIcon((Icon) archivo1);
 		//Añade icono al menu Visualizacion
 		ImageIcon visualizacion = new ImageIcon(new ImageIcon(GestorVentanaSRec.class
 				.getClassLoader().getResource("imagenes/i_formato.gif")).getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT));
 		
 		menus[1].setIcon((Icon) visualizacion);
+		//Añade icono al menu Filtrado
+				ImageIcon filtrado = new ImageIcon(new ImageIcon(GestorVentanaSRec.class
+						.getClassLoader().getResource("imagenes/i_llamadasmarcar.gif")).getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT));
+				
+				menus[5].setIcon((Icon) filtrado);
+				//Añade icono al menu Arbol
+				ImageIcon arbol = new ImageIcon(new ImageIcon(GestorVentanaSRec.class
+						.getClassLoader().getResource("imagenes/i_ajustarVisor.gif")).getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT));
+				
+				menus[6].setIcon((Icon) arbol);
+				//Añade icono al menu Traza
+				ImageIcon traza = new ImageIcon(new ImageIcon(GestorVentanaSRec.class
+						.getClassLoader().getResource("imagenes/i_ligarescrono.gif")).getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT));
+				
+				menus[7].setIcon((Icon) traza);
+				//Añade icono al menu Informacion
+				ImageIcon informacion = new ImageIcon(new ImageIcon(GestorVentanaSRec.class
+						.getClassLoader().getResource("imagenes/i_infovisualizacion.gif")).getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT));
+				
+				menus[2].setIcon((Icon) informacion);
+				//Añade icono al menu Configuracion
+				ImageIcon configuracion = new ImageIcon(new ImageIcon(GestorVentanaSRec.class
+						.getClassLoader().getResource("imagenes/i_idioma.gif")).getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT));
+				
+				menus[3].setIcon((Icon) configuracion);
+
+				//Añade icono al menu Ayuda
+				ImageIcon ayuda = new ImageIcon(new ImageIcon(GestorVentanaSRec.class
+						.getClassLoader().getResource("imagenes/i_srecayuda.gif")).getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT));
+				
+				menus[4].setIcon((Icon) ayuda);
+
+
+				
+				//Archivo
 		barramenu.add(menus[0]);
+				//Visualizacion
 		barramenu.add(menus[1]);
+				//Filtrado 
 		barramenu.add(menus[5]);
+				//Arbol
 		barramenu.add(menus[6]);
+				//Traza
 		barramenu.add(menus[7]);
+				//Información
 		barramenu.add(menus[2]);
+				//Configuracion
 		barramenu.add(menus[3]);
+				//Ayuda
 		barramenu.add(menus[4]);
 	}
 
@@ -510,7 +552,7 @@ public class GestorVentanaSRec implements WindowListener, WindowStateListener {
 			char mnemotecOpciones[], URL iconos[], String nombreMenu,
 			char mnemotecMenu, int separadores[], KeyStroke ks[]) {
 		JMenuItem items[] = new JMenuItem[nombreOpciones.length];
-		/*32*/int ancho = 28; // ancho en pixeles que tendra el icono escalado
+		/*32,28*/int ancho = 25; // ancho en pixeles que tendra el icono escalado
 		/*-1*/int alto = -1; // alto (para que conserve la proporcion pasamos -1)
 		JMenu menu = null;
 
@@ -981,7 +1023,7 @@ public class GestorVentanaSRec implements WindowListener, WindowStateListener {
 	protected static JToolBar[] creaBarrasHeramientas() {
 		// Primero creamos los botones
 		JButton[] botones = new JButton[37];
-		/*32*/int ancho = 30; // ancho en pixeles que tendra el icono escalado
+		/*32,30*/int ancho = 28; // ancho en pixeles que tendra el icono escalado
 		/*-1*/int alto = -1; // alto (para que conserve la proporcion pasamos -1)
 		ImageIcon imagen ;
 		
