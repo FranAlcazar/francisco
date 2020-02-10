@@ -2584,7 +2584,7 @@ public class Ventana extends JFrame implements ActionListener {
 	public void setClaseHabilitada(boolean valor) {
 		this.claseHabilitada = valor;
 
-		GestorVentanaSRec.habilitaMenuItem(this.menus[0],
+		GestorVentanaSRec.habilitaMenuItem(this.menus[1],
 				Texto.get("MENU_ARCH_14", Conf.idioma), valor);
 
 		this.setClaseCargada(valor);
@@ -2700,7 +2700,7 @@ public class Ventana extends JFrame implements ActionListener {
 	 *            contrario.
 	 */
 	public void setClaseHabilitadaAnimacion(boolean valor) {
-		GestorVentanaSRec.habilitaMenuItem(this.menus[0],
+		GestorVentanaSRec.habilitaMenuItem(this.menus[1],
 				Texto.get("MENU_ARCH_15", Conf.idioma), valor);
 		this.botones[29].setEnabled(valor);
 		this.cuadroLanzarEjec = null;
@@ -2767,6 +2767,7 @@ public class Ventana extends JFrame implements ActionListener {
 	}
 
 	public void habilitarOpcionesAnimacion(boolean valor) {
+	
 		this.botones[6].setEnabled(valor);
 
 		this.botones[7].setEnabled(valor);
@@ -2793,10 +2794,13 @@ public class Ventana extends JFrame implements ActionListener {
         this.botones[36].setEnabled(true);
         GestorVentanaSRec.habilitaMenuItem(this.menus[1],
 				Texto.get("BARRA_HERR_TTT35", Conf.idioma), valor);
+       
 		GestorVentanaSRec.habilitaMenuItem(this.menus[2],
 				Texto.get("MENU_INFO_01", Conf.idioma), valor);
 		GestorVentanaSRec.habilitaMenuItem(this.menus[2],
+				
 				Texto.get("MENU_INFO_02", Conf.idioma), valor);
+		//Revisar dos de arriba con tutor
 		GestorVentanaSRec.habilitaMenuItem(this.menus[5],
 				Texto.get("MENU_FILT_04", Conf.idioma), valor);
 		GestorVentanaSRec.habilitaMenuItem(this.menus[5],
@@ -2807,6 +2811,8 @@ public class Ventana extends JFrame implements ActionListener {
 				Texto.get("MENU_VISU_03", Conf.idioma)
 				.replace("_SubMenuItem_", "")
 				.replace("_CheckBoxMenuItem_", ""), valor);
+		
+		
 		GestorVentanaSRec.habilitaMenuItem(
 				this.menus[5],
 				Texto.get("MENU_FILT_01", Conf.idioma)

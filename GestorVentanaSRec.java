@@ -7,6 +7,7 @@ import java.awt.event.WindowListener;
 import java.awt.event.WindowStateListener;
 import java.net.URL;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBoxMenuItem;
@@ -100,8 +101,7 @@ public class GestorVentanaSRec implements WindowListener, WindowStateListener {
 				Texto.get("MENU_ARCH_02", Conf.idioma),
 				Texto.get("MENU_ARCH_03", Conf.idioma),
 				Texto.get("MENU_ARCH_04", Conf.idioma),
-				Texto.get("MENU_ARCH_14", Conf.idioma),
-				Texto.get("MENU_ARCH_15", Conf.idioma),
+				
 				Texto.get("MENU_ARCH_06", Conf.idioma),
 				Texto.get("MENU_ARCH_13", Conf.idioma),
 				Texto.get("MENU_ARCH_07", Conf.idioma),
@@ -125,8 +125,6 @@ public class GestorVentanaSRec implements WindowListener, WindowStateListener {
 				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_guardarclase.gif"),
 				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_abrirclase.gif"),
 				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_compilarclase.gif"),
-				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_seleccionmetodo.gif"),
-				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_nuevavisualizacion.gif"),
 				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_abrirvisualizacion.gif"),
 				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_cargargif.gif"),
 				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_guardarvisualizacion.gif"),
@@ -148,11 +146,7 @@ public class GestorVentanaSRec implements WindowListener, WindowStateListener {
 										java.awt.Event.CTRL_MASK),
 										KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R,
 												java.awt.Event.CTRL_MASK),
-												KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M,
-														java.awt.Event.CTRL_MASK),
-														KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N,
-																java.awt.Event.CTRL_MASK),
-																// null,
+															// null,
 																KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C,
 																		java.awt.Event.CTRL_MASK),
 																		KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I,
@@ -172,10 +166,7 @@ public class GestorVentanaSRec implements WindowListener, WindowStateListener {
 
 		habilitaMenuItem(menus[0], Texto.get("MENU_ARCH_04", Conf.idioma),
 				false);
-		habilitaMenuItem(menus[0], Texto.get("MENU_ARCH_14", Conf.idioma),
-				false);
-		habilitaMenuItem(menus[0], Texto.get("MENU_ARCH_15", Conf.idioma),
-				false);
+		
 		habilitaMenuItem(menus[0], Texto.get("MENU_ARCH_07", Conf.idioma),
 				false);
 		habilitaMenuItem(menus[0], Texto.get("MENU_ARCH_09", Conf.idioma),
@@ -190,45 +181,69 @@ public class GestorVentanaSRec implements WindowListener, WindowStateListener {
 				false);
 
 		// Menú Visualización
-		String noAnimacion[] = { Texto.get("MENU_VISU_19", Conf.idioma),
-				Texto.get("MENU_VISU_18", Conf.idioma),
-				Texto.get("MENU_VISU_10", Conf.idioma),
-				Texto.get("MENU_VISU_11", Conf.idioma),
-				Texto.get("MENU_VISU_12", Conf.idioma),
+		String noAnimacion[] = {
+				Texto.get("MENU_ARCH_14", Conf.idioma),
+				Texto.get("MENU_ARCH_15", Conf.idioma),
 				Texto.get("BARRA_HERR_TTT35", Conf.idioma),
-				Texto.get("BARRA_HERR_TTT36_OPEN", Conf.idioma)};
+				Texto.get("MENU_VISU_12", Conf.idioma),
+				Texto.get("BARRA_HERR_TTT36_OPEN", Conf.idioma),
+				Texto.get("MENU_VISU_18", Conf.idioma),
+				
+				
+				Texto.get("MENU_VISU_10", Conf.idioma),
+				Texto.get("MENU_VISU_11", Conf.idioma)
+				
+			};
 
 		char mnAnimacion[] = new char[noAnimacion.length];
 		mnemotecnicos = Texto.get("MNEMO_VISU", Conf.idioma);
 		for (int i = 0; i < mnAnimacion.length; i++) {
-			mnAnimacion[i] = mnemotecnicos.charAt(i);
+			mnAnimacion[i] =
+					mnemotecnicos.charAt(i);
 		}
 
 		String nombreMenuAnimacion = Texto.get("MENU_VISU_N", Conf.idioma);
 		char mnMenuAnimacion = mnemotecnicos.charAt(mnemotecnicos.length() - 1);
 
 		URL iconosAnimacion[] = {
-				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_idMetodo_des.gif"),
-				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_estadoInicial.gif"),
-				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_formato.gif"),
-				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_zoom.gif"),
-				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_ubicacionpaneles.gif"),
+				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_seleccionmetodo.gif"),
+				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_nuevavisualizacion.gif"),
 				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_generargrafodependencia.gif"),
-				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/ter_terminal_activar.png")};
-		int sepAnimacion[] = {}; // Separador debajo de la primera opción de
+				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_ubicacionpaneles.gif"),
+				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/ter_terminal_activar.png"),
+				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_estadoInicial.gif"),
+										
+				
+				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_formato.gif"),
+				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_zoom.gif")
+			
+				};
+		int sepAnimacion[] = {2,4}; // Separador debajo de la primera opción de
 		// menú (contamos desde cero)
 		KeyStroke ksAnimacion[] = {
-				null,
-				null,
-				null,
-				KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V,
+				KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M,
 						java.awt.Event.CTRL_MASK),
-						KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O,
-								java.awt.Event.CTRL_MASK),
+				KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N,
+						java.awt.Event.CTRL_MASK),
 				null,
-				null};
+				KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O,
+						java.awt.Event.CTRL_MASK),
+					
+				
+				null,
+				null,
+				
+						
+						null,
+				
+				KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V,
+						java.awt.Event.CTRL_MASK)};
 		menus[1] = creaMenu(noAnimacion, mnAnimacion, iconosAnimacion,
 				nombreMenuAnimacion, mnMenuAnimacion, sepAnimacion, ksAnimacion);
+		habilitaMenuItem(menus[1], Texto.get("MENU_ARCH_14", Conf.idioma),
+				false);
+		habilitaMenuItem(menus[1], Texto.get("MENU_ARCH_15", Conf.idioma),
+				false);
 
 		habilitaMenuItem(menus[1], Texto.get("MENU_VISU_11", Conf.idioma),
 				false);
@@ -238,7 +253,9 @@ public class GestorVentanaSRec implements WindowListener, WindowStateListener {
 				false);
 
 		// Menú Filtrado y Selección
-		String noFiltrado[] = { Texto.get("MENU_FILT_00", Conf.idioma),
+		String noFiltrado[] = {
+				Texto.get("MENU_VISU_19", Conf.idioma),
+				Texto.get("MENU_FILT_00", Conf.idioma),
 				Texto.get("MENU_FILT_01", Conf.idioma),
 				Texto.get("MENU_FILT_02", Conf.idioma),
 				Texto.get("MENU_FILT_03", Conf.idioma),
@@ -255,6 +272,7 @@ public class GestorVentanaSRec implements WindowListener, WindowStateListener {
 		char mnMenuFiltrado = mnemotecnicos.charAt(mnemotecnicos.length() - 1);
 
 		URL iconosFiltrado[] = {
+				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_idMetodo_des.gif"),
 				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_entradasalida.gif"),
 				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_vermetodosparam.gif"),
 				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_nodoshistoricos.gif"),
@@ -263,7 +281,7 @@ public class GestorVentanaSRec implements WindowListener, WindowStateListener {
 				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_llamadasdesmarcar.gif")};
 		int sepFiltrado[] = { 3 }; // Separador debajo de la primera opción de
 		// menú (contamos desde cero)
-		KeyStroke ksFiltrado[] = { null, null, null, null, null, null };
+		KeyStroke ksFiltrado[] = { null,null, null, null, null, null, null };
 		menus[5] = creaMenu(noFiltrado, mnFiltrado, iconosFiltrado,
 				nombreMenuFiltrado, mnMenuFiltrado, sepFiltrado, ksFiltrado);
 
@@ -444,6 +462,17 @@ public class GestorVentanaSRec implements WindowListener, WindowStateListener {
 		activaChecks(menus);
 
 		// Adición de menús.
+		int ancho=10;
+		int alto=10;
+		//Añade icono al menu Archivo
+		ImageIcon archivo1 = new ImageIcon(new ImageIcon(GestorVentanaSRec.class
+				.getClassLoader().getResource("imagenes/i_nuevaclase.gif")).getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT));
+		menus[0].setIcon((Icon) archivo1);
+		//Añade icono al menu Visualizacion
+		ImageIcon visualizacion = new ImageIcon(new ImageIcon(GestorVentanaSRec.class
+				.getClassLoader().getResource("imagenes/i_formato.gif")).getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT));
+		
+		menus[1].setIcon((Icon) visualizacion);
 		barramenu.add(menus[0]);
 		barramenu.add(menus[1]);
 		barramenu.add(menus[5]);
@@ -596,7 +625,8 @@ public class GestorVentanaSRec implements WindowListener, WindowStateListener {
 			}
 
 			menu = new JMenu(nombreMenu);
-			Font f= new Font("arial",1,14);
+			
+			Font f= new Font("arial",0,14);
 			menu.setFont(f);
 			//menu.setForeground(Color.BLACK);
 			menu.setMnemonic(mnemotecMenu);
@@ -971,12 +1001,16 @@ public class GestorVentanaSRec implements WindowListener, WindowStateListener {
 		botones[3] = new JButton(new ImageIcon(archivo4));
 
 		// Grupo animación
-		botones[28] = new JButton(new ImageIcon(
-				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_seleccionmetodo.gif")));
-		botones[29] = new JButton(new ImageIcon(
-				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_nuevavisualizacion.gif")));
-        botones[35]=new JButton(new ImageIcon(
-        		GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_generargrafodependencia.gif"))); 		
+		Image animacion1 = new ImageIcon(GestorVentanaSRec.class
+				.getClassLoader().getResource("imagenes/i_seleccionmetodo.gif")).getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT);
+		botones[28] = new JButton(new ImageIcon(animacion1));
+		Image animacion2 = new ImageIcon(GestorVentanaSRec.class
+				.getClassLoader().getResource("imagenes/i_nuevavisualizacion.gif")).getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT);
+		botones[29] = new JButton(new ImageIcon(animacion2));
+		Image animacion3= new ImageIcon(GestorVentanaSRec.class
+				.getClassLoader().getResource("imagenes/i_generargrafodependencia.gif")).getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT);
+		
+        botones[35]=new JButton(new ImageIcon(animacion3)); 		
     
 		// Grupo animación - No visibles
 		botones[4] = new JButton(new ImageIcon(
@@ -987,25 +1021,46 @@ public class GestorVentanaSRec implements WindowListener, WindowStateListener {
 				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_guardarvisualizacion.gif")));
 
 		// Grupo exportación
+		Image exportacion1= new ImageIcon(GestorVentanaSRec.class
+				.getClassLoader().getResource("imagenes/i_exportaranimacion.gif")).getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT);
+		
+        
 		botones[7] = new JButton(new ImageIcon(
-				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_exportaranimacion.gif")));
+				exportacion1));
+		Image exportacion2= new ImageIcon(GestorVentanaSRec.class
+				.getClassLoader().getResource("imagenes/i_exportarestado.gif")).getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT);
+		
 		botones[9] = new JButton(new ImageIcon(
-				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_exportarestado.gif")));
+				exportacion2));
 		// Grupo exportación - No visibles
 		botones[8] = new JButton(new ImageIcon(
 				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_exportarestados.gif")));
 
 		// Grupo opciones 1
+		Image opciones1= new ImageIcon(GestorVentanaSRec.class
+				.getClassLoader().getResource("imagenes/i_entradasalida.gif")).getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT);
+		
 		botones[10] = new JButton(new ImageIcon(
-				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_entradasalida.gif")));
+				opciones1));
+		Image opciones2= new ImageIcon(GestorVentanaSRec.class
+				.getClassLoader().getResource("imagenes/i_vermetodosparam.gif")).getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT);
+		
 		botones[11] = new JButton(new ImageIcon(
-				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_vermetodosparam.gif")));
-		botones[30] = new JButton(new ImageIcon(
-				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_llamadasmarcar.gif")));
+				opciones2));
+		Image opciones3= new ImageIcon(GestorVentanaSRec.class
+				.getClassLoader().getResource("imagenes/i_vermetodosparam.gif")).getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT);
+		
+		botones[30] = new JButton(new ImageIcon(opciones3));
+		Image opciones4= new ImageIcon(GestorVentanaSRec.class
+				.getClassLoader().getResource("imagenes/i_llamadasdesmarcar.gif")).getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT);
+		
 		botones[31] = new JButton(new ImageIcon(
-				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_llamadasdesmarcar.gif")));
+				opciones4));
+		Image opciones5= new ImageIcon(GestorVentanaSRec.class
+				.getClassLoader().getResource("imagenes/ter_terminal_activar.png")).getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT);
+		
 		botones[36] = new JButton(new ImageIcon(
- 				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/ter_terminal_activar.png")));
+ 				opciones5));
 		
 		// Grupo opciones 1 - No Visibles
 		botones[12] = new JButton(new ImageIcon(
@@ -1014,14 +1069,27 @@ public class GestorVentanaSRec implements WindowListener, WindowStateListener {
 				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_mostrarsubarbol.gif")));
 
 		// Grupo opciones 2
+		Image opciones21= new ImageIcon(GestorVentanaSRec.class
+				.getClassLoader().getResource("imagenes/i_mostrarvisor.gif")).getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT);
+		
 		botones[14] = new JButton(new ImageIcon(
-				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_mostrarvisor.gif")));
+			opciones21));
+		Image opciones22= new ImageIcon(GestorVentanaSRec.class
+				.getClassLoader().getResource("imagenes/i_ligarescrono.gif")).getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT);
+		
 		botones[32] = new JButton(new ImageIcon(
-				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_ligarescrono.gif")));
+				opciones22));
+		Image opciones23= new ImageIcon(GestorVentanaSRec.class
+				.getClassLoader().getResource("imagenes/i_estructuraarbol.gif")).getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT);
+		
 		botones[33] = new JButton(new ImageIcon(
-				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_estructuraarbol.gif")));
+			opciones23));
+		Image opciones24= new ImageIcon(GestorVentanaSRec.class
+				.getClassLoader().getResource("imagenes/i_infovisualizacion.gif")).getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT);
+		
+
 		botones[34] = new JButton(new ImageIcon(
-				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_infovisualizacion.gif")));
+			opciones24));
 
 		// Grupo opciones 2 - No Visibles
 		botones[15] = new JButton(new ImageIcon(
@@ -1034,22 +1102,53 @@ public class GestorVentanaSRec implements WindowListener, WindowStateListener {
 				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_arbolcolapsado.gif")));
 
 		// Grupo formato
+		Image formato1= new ImageIcon(GestorVentanaSRec.class
+				.getClassLoader().getResource("imagenes/i_formato.gif")).getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT);
+		
 		botones[19] = new JButton(new ImageIcon(
-				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_formato.gif")));
+				formato1));
+		Image formato2= new ImageIcon(GestorVentanaSRec.class
+				.getClassLoader().getResource("imagenes/i_zoom.gif")).getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT);
+		
+		
 		botones[20] = new JButton(new ImageIcon(
-				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_zoom.gif")));
+				formato2));
+		Image formato3= new ImageIcon(GestorVentanaSRec.class
+				.getClassLoader().getResource("imagenes/i_zoommas1.gif")).getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT);
+		
+		
 		botones[21] = new JButton(new ImageIcon(
-				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_zoommas1.gif")));
+				formato3));
+		Image formato4= new ImageIcon(GestorVentanaSRec.class
+				.getClassLoader().getResource("imagenes/i_zoommenos1.gif")).getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT);
+		
+		
 		botones[22] = new JButton(new ImageIcon(
-				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_zoommenos1.gif")));
+			formato4));
+		Image formato5= new ImageIcon(GestorVentanaSRec.class
+				.getClassLoader().getResource("imagenes/i_zoomajuste1.gif")).getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT);
+		
+		
 		botones[23] = new JButton(new ImageIcon(
-				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_zoomajuste1.gif")));
+				formato5));
+		Image formato6= new ImageIcon(GestorVentanaSRec.class
+				.getClassLoader().getResource("imagenes/i_zoommas2.gif")).getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT);
+		
+		
 		botones[24] = new JButton(new ImageIcon(
-				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_zoommas2.gif")));
+				formato6));
+		Image formato7= new ImageIcon(GestorVentanaSRec.class
+				.getClassLoader().getResource("imagenes/i_zoommenos2.gif")).getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT);
+		
+		
 		botones[25] = new JButton(new ImageIcon(
-				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_zoommenos2.gif")));
+				formato7));
+		Image formato8= new ImageIcon(GestorVentanaSRec.class
+				.getClassLoader().getResource("imagenes/i_zoomajuste2.gif")).getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT);
+		
+		
 		botones[26] = new JButton(new ImageIcon(
-				GestorVentanaSRec.class.getClassLoader().getResource("imagenes/i_zoomajuste2.gif")));
+				formato8));
 		
 		// Grupo formato - No Visibles
 		botones[27] = new JButton(new ImageIcon(

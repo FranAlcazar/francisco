@@ -39,12 +39,12 @@
 		<T valor="Help" idioma="en" id="MENU_AYUD_N"/>
 		
 		<!-- Mnemotecnicos, el ultimo es para el nombre del menu -->
-		<T valor="VSPRMNNCFGATUZXA" idioma="es" id="MNEMO_ARCHIVO"/>
-		<T valor="WCPRMNNLFSATUEXF" idioma="en" id="MNEMO_ARCHIVO"/>
-		<T valor="MIFZUGV" idioma="es" id="MNEMO_VISU"/>
-		<T valor="MIFZLGV" idioma="en" id="MNEMO_VISU"/>
-		<T valor="DMHSBRS" idioma="es" id="MNEMO_FILT"/>
-		<T valor="DMHSCRS" idioma="en" id="MNEMO_FILT"/>
+		<T valor="VSPRNCFGATUZXA" idioma="es" id="MNEMO_ARCHIVO"/>
+		<T valor="WCPRNLFSATUEXF" idioma="en" id="MNEMO_ARCHIVO"/>
+		<T valor="MNGUVZMF" idioma="es" id="MNEMO_VISU"/>
+		<T valor="MNGLVZMF" idioma="en" id="MNEMO_VISU"/>
+		<T valor="IDMHSBRS" idioma="es" id="MNEMO_FILT"/>
+		<T valor="IDMHSCRS" idioma="en" id="MNEMO_FILT"/>
 		<T valor="DNGAER" idioma="es" id="MNEMO_ARBL"/>
 		<T valor="DNGASR" idioma="en" id="MNEMO_ARBL"/>
 		<T valor="SOECT" idioma="es" id="MNEMO_TRAZ"/>
@@ -117,7 +117,7 @@
 			
 		<T valor="Formato tipogr[aacute]fico..." idioma="es" id="MENU_VISU_10"/>
 		<T valor="Typographical format..." idioma="en" id="MENU_VISU_10"/>
-		<T valor="Configuraci[oacute]n de zoom..." idioma="es" id="MENU_VISU_11"/>
+		<T valor="Ajuste de zoom..." idioma="es" id="MENU_VISU_11"/>
 		<T valor="Zoom configuration..." idioma="en" id="MENU_VISU_11"/>
 		<T valor="Ubicaci[oacute]n de vistas y paneles..." idioma="es" id="MENU_VISU_12"/>
 		<T valor="Views and panels location..." idioma="en" id="MENU_VISU_12"/>
@@ -222,8 +222,8 @@
 		<T valor="New animation..." idioma="en" id="BARRA_HERR_TTT27"/>
 		<T valor="Generar grafo de dependencia..." idioma="es" id="BARRA_HERR_TTT35"/>
         <T valor="Generate dependency graph..." idioma="en" id="BARRA_HERR_TTT35"/>
-		<T valor="Abrir terminal..." idioma="es" id="BARRA_HERR_TTT36_OPEN"/>
-        <T valor="Open terminal..." idioma="en" id="BARRA_HERR_TTT36_OPEN"/>
+		<T valor="Abrir terminal" idioma="es" id="BARRA_HERR_TTT36_OPEN"/>
+        <T valor="Open terminal" idioma="en" id="BARRA_HERR_TTT36_OPEN"/>
 		<T valor="Cerrar terminal..." idioma="es" id="BARRA_HERR_TTT36_CLOSE"/>
         <T valor="Close terminal..." idioma="en" id="BARRA_HERR_TTT36_CLOSE"/>
 		<T valor="Nueva animaci[oacute]n..." idioma="es" id="BARRA_HERR_TTT05"/>
