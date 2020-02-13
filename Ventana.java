@@ -1189,6 +1189,7 @@ public class Ventana extends JFrame implements ActionListener {
 					this.log_write("Ayuda > Sobre SRec");
 				}
 				new CuadroAcercade(this);
+				//Visualizacion -> abrir /cerrar terminal
 			}else if (textoFuente.equals(this.textos[60]) || textoFuente.equals(this.textos[61])) { 
 				if (Conf.fichero_log) {
 					this.log_write("Visualización > Abrir/Cerrar terminal");
@@ -2321,7 +2322,7 @@ public class Ventana extends JFrame implements ActionListener {
      */
     public void terminalAbrirCerrar() { 
     	boolean estaVisible = Ventana.this.getCuadroTerminal().terminalAbrirCerrar();
-    	JMenuItem item = this.menus[1].getItem(6);
+    	JMenuItem item = this.menus[1].getItem(5);
     	String textoClose = Texto.get("BARRA_HERR_TTT36_CLOSE",Conf.idioma);
     	String textoOpen = Texto.get("BARRA_HERR_TTT36_OPEN",Conf.idioma);
     	Icon iconClose = new ImageIcon(
@@ -3324,4 +3325,4 @@ public class Ventana extends JFrame implements ActionListener {
 	public void setCuadroTerminal(CuadroTerminal cuadroTerminal) {
 		this.cuadroTerminal = cuadroTerminal;
 	}
-}
+} 

@@ -596,8 +596,12 @@
 		<T valor="If you continue, application could not respond correctly. ¿Are you sure to continue anyway?" idioma="en" id="PREG_DEMASIADOS_NODOS_BODY"/>
 		
 		<T valor="[iquest]Desea activar las vistas de Divide y Vencer[aacute]s para alg[uacute]n m[eacute]todo?" idioma="es" id="PREGMEN_SELECCMETODOSDYV"/>
-		<T valor="Do you want to activate Divide and conquer views for any method?" idioma="en" id="PREGMEN_SELECCMETODOSDYV"/>
-		
+		<T valor="Do you want to activate Divide and conquer views for any method?" idioma="en" id="PREGMEN_SELECCMETODOSDYV"/><T
+			valor="Activaci[oacute]n de vistas espec[iacute]ficas de té[eacute]cnicas de diseño"
+			idioma="es" id="PREG_SELECCVISTASESPECIFICAS">
+</T>
+		<T valor="Si lo desea, marque una t[eacute]cnica de diseño para activar sus vistas especí[iacute]ficas" idioma="es" id="PREGMEN_SELECCVISTASESPECIFICAS"></T>
+
 		<!-- Excepciones -->
 		<T valor="Error en informaci[oacute]n de configuraci[oacute]n de opciones." idioma="es" id="EXCEP_INFOCONF"/>
 		<T valor="Error in the information about configuration." idioma="en" id="EXCEP_INFOCONF"/>		
