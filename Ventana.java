@@ -27,6 +27,7 @@ import javax.swing.WindowConstants;
 
 import opciones.GestorOpciones;
 import opciones.OpcionBorradoFicheros;
+import opciones.OpcionConfVisualizacion;
 import opciones.OpcionFicherosRecientes;
 import opciones.OpcionMVJava;
 import opciones.OpcionOpsVisualizacion;
@@ -656,7 +657,10 @@ public class Ventana extends JFrame implements ActionListener {
 				if (Conf.fichero_log) {
 					this.log_write("Visualización > Formato de animación...");
 				}
-				new CuadroOpcionConfVisualizacion(this);
+				
+				 CuadroOpcionConfVisualizacion copv=	new CuadroOpcionConfVisualizacion(this);
+				
+				
 			}
 
 			// Visualización > Configuración de Zoom...
@@ -1522,7 +1526,11 @@ public class Ventana extends JFrame implements ActionListener {
 				if (Conf.fichero_log) {
 					this.log_write("Botón: Formato de animación...");
 				}
-				new CuadroOpcionConfVisualizacion(this);
+				
+				
+				CuadroOpcionConfVisualizacion c =new CuadroOpcionConfVisualizacion(this);
+				
+				
 			} else if (fuente == this.botones[20]) // Configuración > Zoom
 			{
 				if (Conf.fichero_log) {
@@ -1599,6 +1607,23 @@ public class Ventana extends JFrame implements ActionListener {
 					if (vistasVisiblesAhora[1] != 2) {
 						CuadroZoom.zoomAjuste(this, this.panelVentana,
 								vistasVisiblesAhora[1], CuadroZoom.MAS5);
+						
+						
+						
+					}else {
+						OpcionConfVisualizacion ocv = (OpcionConfVisualizacion) this.gOpciones.getOpcion(
+								"OpcionConfVisualizacion", false);
+						ocv.setFuenteTraza(ocv.getTamFuenteTraza()+2);
+						
+						this.gOpciones.setOpcion(ocv, 1);
+						
+						Conf.setValoresVisualizacion();
+						if (this.traza != null) {
+							Conf.setRedibujarGrafoArbol(true);
+							Conf.setRedibujarGrafoArbol(false);
+						}
+						// Debe ejecutarse tras la actualización de Conf
+						this.refrescarFormato();
 					}
 				} else {
 					new CuadroError(this, Texto.get("ERROR_VISU", Conf.idioma),
@@ -1618,6 +1643,21 @@ public class Ventana extends JFrame implements ActionListener {
 						CuadroZoom.zoomAjuste(this, this.panelVentana,
 								vistasVisiblesAhora[1], CuadroZoom.MENOS5);
 					}
+					else {
+						OpcionConfVisualizacion ocv = (OpcionConfVisualizacion) this.gOpciones.getOpcion(
+								"OpcionConfVisualizacion", false);
+						ocv.setFuenteTraza(ocv.getTamFuenteTraza()-2);
+						
+						this.gOpciones.setOpcion(ocv, 1);
+						
+						Conf.setValoresVisualizacion();
+						if (this.traza != null) {
+							Conf.setRedibujarGrafoArbol(true);
+							Conf.setRedibujarGrafoArbol(false);
+						}
+						// Debe ejecutarse tras la actualización de Conf
+						this.refrescarFormato();
+					}
 				} else {
 					new CuadroError(this, Texto.get("ERROR_VISU", Conf.idioma),
 							Texto.get("ERROR_NOVISZOOM", Conf.idioma));
@@ -1636,6 +1676,26 @@ public class Ventana extends JFrame implements ActionListener {
 						CuadroZoom.zoomAjuste(this, this.panelVentana,
 								vistasVisiblesAhora[1], CuadroZoom.AJUSTE);
 					}
+					else {
+						OpcionConfVisualizacion ocv = (OpcionConfVisualizacion) this.gOpciones.getOpcion(
+								"OpcionConfVisualizacion", false);
+						ocv.setFuenteTraza(12);
+						
+						this.gOpciones.setOpcion(ocv, 1);
+						
+						Conf.setValoresVisualizacion();
+						if (this.traza != null) {
+							Conf.setRedibujarGrafoArbol(true);
+							Conf.setRedibujarGrafoArbol(false);
+						}
+						// Debe ejecutarse tras la actualización de Conf
+						this.refrescarFormato();
+					}
+					OpcionConfVisualizacion	ocv = (OpcionConfVisualizacion) this.gOpciones.getOpcion(
+							"OpcionConfVisualizacion", false);
+					ocv.setFuenteTraza((String) "arial",
+							5);// ,(String)fuentesTraza.getSelectedItem() );
+					
 				} else {
 					new CuadroError(this, Texto.get("ERROR_VISU", Conf.idioma),
 							Texto.get("ERROR_NOVISZOOM", Conf.idioma));
@@ -3325,4 +3385,4 @@ public class Ventana extends JFrame implements ActionListener {
 	public void setCuadroTerminal(CuadroTerminal cuadroTerminal) {
 		this.cuadroTerminal = cuadroTerminal;
 	}
-} 
+}
