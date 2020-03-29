@@ -154,6 +154,7 @@ public class CuadroParamLanzarEjec extends Thread implements ActionListener,
 					}
 					this.mostrarvalores[i] = new JCheckBox(Texto.get(
 							"ETIQFL_ENTR", Conf.idioma)
+							
 							+ ": "
 							+ this.metodo.getNombreParametro(i)
 							+ " ("
@@ -253,7 +254,7 @@ public class CuadroParamLanzarEjec extends Thread implements ActionListener,
 			JPanel panelCuadros = new JPanel();
 			panelCuadros.setLayout(gl2);
 			for (int i = 0; i < this.numero; i++) {
-				panelCuadros.add(this.cuadrosvalores[i]);
+			panelCuadros.add(this.cuadrosvalores[i]);
 			}
 
 			JTextComponent[] editor = new JTextComponent[this.cuadrosvalores.length];
@@ -601,23 +602,34 @@ public class CuadroParamLanzarEjec extends Thread implements ActionListener,
 			}
 		} else if (e.getSource() == this.cargar) {
 			this.estamosCargando = true;
+			
 			if (this.almacenValores.cargar(this.metodo)) {
+				
 				this.valores = this.almacenValores.get();
+				
+				if (valores.length !=this.cuadrosvalores.length) {
+					
+					new CuadroError(this.dialogo, 
+							"Error",
+							Texto.get("ERROR_PARAMALG", Conf.idioma));
+					}else {
 				for (int i = 0; i < this.valores.length; i++) {
 					ComboBoxEditor cbe = this.cuadrosvalores[i].getEditor();
 					cbe.setItem(this.valores[i]);
 					this.cuadrosvalores[i].insertItemAt(this.valores[i], 0);
 					this.cuadrosvalores[i].setSelectedIndex(0);
 				}
-				if (recogerValores(false, true)) {
+				this.aceptar.setEnabled(true);
+				/*if (recogerValores(false, true)) {
 					this.aceptar.setEnabled(true);
 				} else {
 					this.aceptar.setEnabled(false);
-				}
-			} else {
+				}*/
+			} }else {
 				if (this.almacenValores.getError().length() > 0) {
-					new CuadroError(this.dialogo, "3"
-							+ Texto.get("ERROR_ARCH", Conf.idioma),
+					
+				new CuadroError(this.dialogo, 
+							Texto.get("ERROR_ARCH", Conf.idioma),
 							this.almacenValores.getError());
 				}
 			}
@@ -706,6 +718,7 @@ public class CuadroParamLanzarEjec extends Thread implements ActionListener,
 				recogerValores(true, true);
 			}
 			this.estamosCargando = false;
+			
 		} else if ((e.getSource() instanceof JButton)
 				&& code == KeyEvent.VK_SPACE) {
 			gestionEventoBotones(e);
