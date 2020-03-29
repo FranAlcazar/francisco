@@ -1551,10 +1551,35 @@ public class Ventana extends JFrame implements ActionListener {
 						this.log_write("Botón: Zoom+ (panel 1, vista "
 								+ Vista.codigos[vistasVisiblesAhora[0]] + ")");
 					}
-					if (vistasVisiblesAhora[0] != 2) {
+					if (vistasVisiblesAhora[0] != 2)/*2*/ {
 						CuadroZoom.zoomAjuste(this, this.panelVentana,
 								vistasVisiblesAhora[0], CuadroZoom.MAS5);
-					}
+						
+						
+						
+					}else {
+						if(this.botones[33].isEnabled())//anterior if es para comprobar que estan activadas las vista de DyV
+							{
+							CuadroZoom.zoomAjuste(this, this.panelVentana,
+									vistasVisiblesAhora[0], CuadroZoom.MAS5);
+							
+						}
+						else {
+							//Si es la traza texto aumentamos su tamaño de letra
+						OpcionConfVisualizacion ocv = (OpcionConfVisualizacion) this.gOpciones.getOpcion(
+								"OpcionConfVisualizacion", false);
+						ocv.setFuenteTraza(ocv.getTamFuenteTraza()+2);
+						
+						this.gOpciones.setOpcion(ocv, 1);
+						
+						Conf.setValoresVisualizacion();
+						if (this.traza != null) {
+							Conf.setRedibujarGrafoArbol(true);
+							Conf.setRedibujarGrafoArbol(false);
+						}
+						// Debe ejecutarse tras la actualización de Conf
+						this.refrescarFormato();
+					}}
 				} else {
 					new CuadroError(this, Texto.get("ERROR_VISU", Conf.idioma),
 							Texto.get("ERROR_NOVISZOOM", Conf.idioma));
@@ -1568,10 +1593,35 @@ public class Ventana extends JFrame implements ActionListener {
 						this.log_write("Botón: Zoom- (panel 1, vista "
 								+ Vista.codigos[vistasVisiblesAhora[0]] + ")");
 					}
-					if (vistasVisiblesAhora[0] != 2) {
+					if (vistasVisiblesAhora[0] != 2)/*2*/ {
 						CuadroZoom.zoomAjuste(this, this.panelVentana,
 								vistasVisiblesAhora[0], CuadroZoom.MENOS5);
-					}
+						
+						
+						
+					}else {
+						if(this.botones[33].isEnabled())//anterior if es para comprobar que estan activadas las vista de DyV
+							{
+							CuadroZoom.zoomAjuste(this, this.panelVentana,
+									vistasVisiblesAhora[0], CuadroZoom.MENOS5);
+							
+						}
+						else {
+							//Si es la traza texto aumentamos su tamaño de letra
+						OpcionConfVisualizacion ocv = (OpcionConfVisualizacion) this.gOpciones.getOpcion(
+								"OpcionConfVisualizacion", false);
+						ocv.setFuenteTraza(ocv.getTamFuenteTraza()-2);
+						
+						this.gOpciones.setOpcion(ocv, 1);
+						
+						Conf.setValoresVisualizacion();
+						if (this.traza != null) {
+							Conf.setRedibujarGrafoArbol(true);
+							Conf.setRedibujarGrafoArbol(false);
+						}
+						// Debe ejecutarse tras la actualización de Conf
+						this.refrescarFormato();
+					}}
 				} else {
 					new CuadroError(this, Texto.get("ERROR_VISU", Conf.idioma),
 							Texto.get("ERROR_NOVISZOOM", Conf.idioma));
@@ -1583,13 +1633,39 @@ public class Ventana extends JFrame implements ActionListener {
 					int[] vistasVisiblesAhora = this.panelVentana
 							.getCodigosVistasVisibles();
 					if (Conf.fichero_log) {
-						this.log_write("Botón: ZoomAjuste (panel 1, vista "
+						this.log_write("Botón: ZoomAjuste (panel 2, vista "
 								+ Vista.codigos[vistasVisiblesAhora[0]] + ")");
 					}
 					if (vistasVisiblesAhora[0] != 2) {
 						CuadroZoom.zoomAjuste(this, this.panelVentana,
 								vistasVisiblesAhora[0], CuadroZoom.AJUSTE);
 					}
+					if(this.botones[33].isEnabled())//anterior if es para comprobar que estan activadas las vista de DyV
+					{
+					CuadroZoom.zoomAjuste(this, this.panelVentana,
+							vistasVisiblesAhora[0], CuadroZoom.AJUSTE);
+					
+				}
+				else {
+						OpcionConfVisualizacion ocv = (OpcionConfVisualizacion) this.gOpciones.getOpcion(
+								"OpcionConfVisualizacion", false);
+						ocv.setFuenteTraza(12);
+						
+						this.gOpciones.setOpcion(ocv, 1);
+						
+						Conf.setValoresVisualizacion();
+						if (this.traza != null) {
+							Conf.setRedibujarGrafoArbol(true);
+							Conf.setRedibujarGrafoArbol(false);
+						}
+						// Debe ejecutarse tras la actualización de Conf
+						this.refrescarFormato();
+					}
+					OpcionConfVisualizacion	ocv = (OpcionConfVisualizacion) this.gOpciones.getOpcion(
+							"OpcionConfVisualizacion", false);
+					ocv.setFuenteTraza((String) "arial",
+							5);// ,(String)fuentesTraza.getSelectedItem() );
+					
 				} else {
 					new CuadroError(this, Texto.get("ERROR_VISU", Conf.idioma),
 							Texto.get("ERROR_NOVISZOOM", Conf.idioma));
@@ -1604,13 +1680,21 @@ public class Ventana extends JFrame implements ActionListener {
 						this.log_write("Botón: Zoom+ (panel 2, vista "
 								+ Vista.codigos[vistasVisiblesAhora[1]] + ")");
 					}
-					if (vistasVisiblesAhora[1] != 2) {
+					if (vistasVisiblesAhora[1] != 2)/*2*/ {
 						CuadroZoom.zoomAjuste(this, this.panelVentana,
 								vistasVisiblesAhora[1], CuadroZoom.MAS5);
 						
 						
 						
 					}else {
+						if(this.botones[33].isEnabled())//anterior if es para comprobar que estan activadas las vista de DyV
+							{
+							CuadroZoom.zoomAjuste(this, this.panelVentana,
+									vistasVisiblesAhora[1], CuadroZoom.MAS5);
+							
+						}
+						else {
+							//Si es la traza texto aumentamos su tamaño de letra
 						OpcionConfVisualizacion ocv = (OpcionConfVisualizacion) this.gOpciones.getOpcion(
 								"OpcionConfVisualizacion", false);
 						ocv.setFuenteTraza(ocv.getTamFuenteTraza()+2);
@@ -1624,7 +1708,7 @@ public class Ventana extends JFrame implements ActionListener {
 						}
 						// Debe ejecutarse tras la actualización de Conf
 						this.refrescarFormato();
-					}
+					}}
 				} else {
 					new CuadroError(this, Texto.get("ERROR_VISU", Conf.idioma),
 							Texto.get("ERROR_NOVISZOOM", Conf.idioma));
@@ -1639,11 +1723,21 @@ public class Ventana extends JFrame implements ActionListener {
 						this.log_write("Botón: Zoom- (panel 2, vista "
 								+ Vista.codigos[vistasVisiblesAhora[1]] + ")");
 					}
-					if (vistasVisiblesAhora[1] != 2) {
+					if (vistasVisiblesAhora[1] != 2)/*2*/ {
 						CuadroZoom.zoomAjuste(this, this.panelVentana,
 								vistasVisiblesAhora[1], CuadroZoom.MENOS5);
-					}
-					else {
+						
+						
+						
+					}else {
+						if(this.botones[33].isEnabled())//anterior if es para comprobar que estan activadas las vista de DyV
+							{
+							CuadroZoom.zoomAjuste(this, this.panelVentana,
+									vistasVisiblesAhora[1], CuadroZoom.MENOS5);
+							
+						}
+						else {
+							//Si es la traza texto aumentamos su tamaño de letra
 						OpcionConfVisualizacion ocv = (OpcionConfVisualizacion) this.gOpciones.getOpcion(
 								"OpcionConfVisualizacion", false);
 						ocv.setFuenteTraza(ocv.getTamFuenteTraza()-2);
@@ -1657,7 +1751,7 @@ public class Ventana extends JFrame implements ActionListener {
 						}
 						// Debe ejecutarse tras la actualización de Conf
 						this.refrescarFormato();
-					}
+					}}
 				} else {
 					new CuadroError(this, Texto.get("ERROR_VISU", Conf.idioma),
 							Texto.get("ERROR_NOVISZOOM", Conf.idioma));
@@ -1676,7 +1770,13 @@ public class Ventana extends JFrame implements ActionListener {
 						CuadroZoom.zoomAjuste(this, this.panelVentana,
 								vistasVisiblesAhora[1], CuadroZoom.AJUSTE);
 					}
-					else {
+					if(this.botones[33].isEnabled())//anterior if es para comprobar que estan activadas las vista de DyV
+					{
+					CuadroZoom.zoomAjuste(this, this.panelVentana,
+							vistasVisiblesAhora[1], CuadroZoom.AJUSTE);
+					
+				}
+				else {
 						OpcionConfVisualizacion ocv = (OpcionConfVisualizacion) this.gOpciones.getOpcion(
 								"OpcionConfVisualizacion", false);
 						ocv.setFuenteTraza(12);
@@ -1946,7 +2046,16 @@ public class Ventana extends JFrame implements ActionListener {
 	public void actualizarZoomPila(int valor) {
 		this.panelVentana.refrescarZoomPila(valor);
 	}
-	
+	/**
+	 * Actualiza la información sobre el zoom y actualiza la visualización de la
+	 * traza.
+	 * 
+	 * @param valor
+	 *            Nuevo valor de zoom.
+	 */
+	public void actualizarZoomTraza(int valor) {
+		this.panelVentana.refrescarZoomTraza(valor);
+	}
 	/**
 	 * Actualiza la información sobre el zoom y actualiza la visualización de la
 	 * pila.
