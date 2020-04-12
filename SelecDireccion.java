@@ -306,17 +306,22 @@ public class SelecDireccion {
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			nombres[0] = jfc.getSelectedFile().getParent() + File.separator;
 			nombres[1] = jfc.getSelectedFile().getName();
-			//MIRAR AQUI
+			
 		
 			FileFilter fne = jfc.getFileFilter();
-			boolean text= jfc.getSelectedFile().getName().endsWith("txt");
-			if(text==true) {nombres[2]="true";
+			boolean text= fne.getDescription().toLowerCase().contains("txt");
+			if (text == true) {
+				nombres[2] = "true";
+			} else {
+				nombres[2] = "false";
 			}
-			else {nombres[2]="false";
-			}
-			
+
 			if (tipo == JFileChooser.SAVE_DIALOG && !soloDirectorio) {
-				if (fne.getDescription().toLowerCase().contains("jpeg")
+				if (fne.getDescription().toLowerCase().contains("txt")
+						&& (!nombres[1].toLowerCase().contains(".txt") && !nombres[1]
+								.toLowerCase().contains(".txt"))) {
+					nombres[1] = nombres[1] + ".txt";
+				}if (fne.getDescription().toLowerCase().contains("jpeg")
 						&& (!nombres[1].toLowerCase().contains(".jpeg") && !nombres[1]
 								.toLowerCase().contains(".jpg"))) {
 					nombres[1] = nombres[1] + ".jpg";
@@ -338,7 +343,15 @@ public class SelecDireccion {
 			*/
 			nombres[0] = path;
 			nombres[1] = null;
-			nombres[2]="fpe";
+			FileFilter fne = jfc.getFileFilter();
+			boolean text= jfc.getSelectedFile().getName().endsWith("txt");
+			if (text == true) {
+				nombres[2] = "true";
+			} else {
+				nombres[2] = "false";
+			}
+
+			
 			
 		}
 

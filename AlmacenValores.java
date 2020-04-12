@@ -61,13 +61,19 @@ public class AlmacenValores {
 	public void guardar(String cadenas[], MetodoAlgoritmo metodo) {
 
 		this.fichero[1] = null;
+		String[][] ext = new String[2][1];
+		ext[0][0]="xml";
+		ext[1][0]="txt";
+		String[] def = new String[2];
+		def[0]=Texto.get("ARCHIVO_XML", Conf.idioma);
+		def[1]="Documento TXT";
 		this.fichero = SelecDireccion.cuadroAbrirFichero(this.fichero[0],
-				Texto.get("CA_GUARPAR", Conf.idioma), null, "xml",
-				Texto.get("ARCHIVO_XML", Conf.idioma), 0);
+				Texto.get("CA_GUARPAR", Conf.idioma), null, ext,
+				def, 0);
 
 		// *1* Comprobarmos que el fichero existe
 
-		if (this.fichero != null && this.fichero[1] != null) {
+		if (this.fichero != null && this.fichero[1] != null && this.fichero[2]=="false") {
 			this.ofr.setDir(this.fichero[0]);
 			this.gOpciones.setOpcion(this.ofr, 2);
 
@@ -143,6 +149,37 @@ public class AlmacenValores {
 			} catch (IOException ioe) {
 				System.out.println("Error FileWriter 3");
 			}
+		} else if(fichero[2]=="true"){   //Tipo txt
+			this.ofr.setDir(this.fichero[0]);
+			this.gOpciones.setOpcion(this.ofr, 2);
+			File f = new File(this.fichero[0] + this.fichero[1]);
+			try {
+				f.createNewFile();
+			} catch (java.io.IOException ioe) {
+			}
+
+			// Inicialización de escritura
+			FileWriter fw = null;
+			try {
+				fw = new FileWriter(this.fichero[0] + this.fichero[1]);
+
+			} catch (IOException ioe) {
+				System.out.println("Error FileWriter 1");
+			}
+			try {
+				for (int i = 0; i < metodo.getNumeroParametros(); i++) {
+				fw.write(cadenas[i]+"\n ");
+				}
+			} catch (IOException ioe) {
+				System.out.println("Error FileWriter 1");
+			}
+			// Finalización de escritura
+			try {
+				fw.close();
+			} catch (IOException ioe) {
+				System.out.println("Error FileWriter 3");
+			}
+
 		}
 	}
 
@@ -173,9 +210,9 @@ public class AlmacenValores {
 		// *1* Comprobarmos que el fichero existe
 		String tipoTxt = this.fichero[2];
 		
-		if(tipoTxt=="false") {
+		
 
-		if (this.fichero != null && this.fichero[1] != null) {
+		if (this.fichero != null && this.fichero[1] != null&&tipoTxt=="false") {
 			this.ofr.setDir(this.fichero[0]);
 			this.gOpciones.setOpcion(this.ofr, 2);
 
@@ -200,7 +237,7 @@ public class AlmacenValores {
 			if (elementAlgoritmo[0].getAttribute("nombre").equals(
 					metodo.getNombre())) {
 				if (metodo.getNumeroParametros() != parametros.length) {
-					this.mensajeError = Texto
+					this.mensajeError = "236"+Texto
 							.get("ERROR_PARAMINC", Conf.idioma);
 					return false;
 				}
@@ -247,15 +284,13 @@ public class AlmacenValores {
 					}
 				}
 				return true; // Carga satisfactoria
-			} else {
+			}
+			else {
 				this.mensajeError = Texto.get("ERROR_PARAMALG", Conf.idioma)
 						+ elementAlgoritmo[0].getAttribute("nombre") + ").";
 				return false; // Sucedio error
 			}
-		}
-		this.mensajeError = "Error del if"
-				+ ").";
-		return false; 
+		
 			}
 		else  { 
 			
@@ -269,21 +304,12 @@ public class AlmacenValores {
 				}
 				this.cadenas = new String[cadenasList.size()];
 				for (int i = 0; i < cadenas.length; i++) {
-				try {
-				
-				if(cadenasList.get(i).contains("{")) {
-					if(cadenasList.get(i)!="{"&&cadenasList.get(i)!="}"&&cadenasList.get(i)!=",") {
-					//	int x = Integer.parseInt(cadenasList.get(i));	
+					if (cadenasList.get(i).matches(".*[a-z].*")) { 
+						this.mensajeError = "317"+ Texto.get("ERROR_PARAMALG", Conf.idioma);
+						return false;  
 					}
-				}
-				else{
-					int x = Integer.parseInt(cadenasList.get(i));	
-				}
 					
-				}catch(Exception eo ) {
-					this.mensajeError =  Texto.get("ERROR_PARAMALG", Conf.idioma);
-					return false;
-				}
+				
 				cadenas[i] = cadenasList.get(i);
 					
 				}
