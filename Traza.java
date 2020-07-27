@@ -638,6 +638,25 @@ public class Traza {
 			boolean valor) {
 		return this.raiz.iluminar(numMetodo, valoresE, valoresS, valor);
 	}
+	/**
+	 * Permite obtener el numero de nodos que se corresponden con los valores de
+	 * entrada, y de salida de un método.
+	 * 
+	 * @param numeroMetodo
+	 *            Posición del método a iluminar.
+	 * @param valoresE
+	 *            Valores de entrada del método a iluminar.
+	 * @param valoresS
+	 *            Valores de salida del método a iluminar.
+	 * @param valor
+	 *            true para iluminar, false para eliminar iluminación.
+	 * 
+	 * @return Número de nodos iluminados.
+	 */
+	/*public int getRedundantes(int numMetodo, String valoresE[], String valoresS[]
+			) {
+		return this.raiz.getRedundantes(numMetodo, valoresE, valoresS);
+	}*/
 
 	/**
 	 * Asigna qué parametros son visibles durante la animación
