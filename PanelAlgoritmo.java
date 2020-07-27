@@ -396,7 +396,7 @@ public class PanelAlgoritmo extends JPanel implements ChangeListener, ComponentL
 			pArbol = new PanelArbol(nyp);
 			pPila = new PanelPila(nyp);
 			if(grafoActivado)
-				pGrafo.visualizar2(nyp);
+				//pGrafo.visualizar2(nyp);
 			if (Arrays.contiene(MetodoAlgoritmo.TECNICA_DYV,
 					Ventana.thisventana.getTraza().getTecnicas())) {
 				Ventana.thisventana.habilitarOpcionesDYV(true);
@@ -1069,7 +1069,19 @@ public class PanelAlgoritmo extends JPanel implements ChangeListener, ComponentL
 		}
 		this.updateUI();
 	}
-	
+	/**
+	 * Establece el valor de zoom para el panel de pila.
+	 * 
+	 * @param valor
+	 *            Valor de zoom.
+	 */
+	public void refrescarZoomTraza(int valor) {
+		if (pTraza != null) {
+			pTraza.refrescarZoom(valor);
+			pTraza.visualizar();
+		}
+		this.updateUI();
+	}
 	/**
 	 * Establece el valor de zoom para el panel de grafo
 	 * 
