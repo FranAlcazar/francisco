@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
 import java.lang.Integer;
 import java.util.ArrayList;
 
@@ -39,8 +40,8 @@ import ventanas.*;
 public class CuadroPreguntaSeleccionVistasEspecificas extends Thread implements ActionListener,
 		KeyListener, MouseListener {
 
-	private static final int ANCHO_CUADRO = 420;
-	private static final int ALTO_CUADRO = 220;
+	private static final int ANCHO_CUADRO = 390;//420
+	private static final int ALTO_CUADRO = 190;//220
 
 	private BotonAceptar aceptar;
 	private BotonCancelar cancelar;
@@ -171,26 +172,24 @@ public class CuadroPreguntaSeleccionVistasEspecificas extends Thread implements 
 			this.panelBoton = new JPanel();
 			this.panelBoton.add(this.aceptar);
 			this.panelBoton.add(this.cancelar);
-			GridLayout layoutGrid = new GridLayout(3, 1);
+			GridLayout layoutGrid = new GridLayout(2, 1);
 			this.panelBotones= new JPanel(layoutGrid);
 			
 			
-			this.botonesSeleccion= new JCheckBox[3];
-			for(int i=0; i<3 ; i++) {
+			this.botonesSeleccion= new JCheckBox[2];
+			for(int i=0; i<2 ; i++) {
 				this.botonesSeleccion[i] = new JCheckBox();
 				if(i==0) {
-					this.botonesSeleccion[i].setText(Texto.get("BOTON1_SELECCVISTASESPECIFICAS", Conf.idioma));
+					this.botonesSeleccion[i].setText("  "+Texto.get("BOTON1_SELECCVISTASESPECIFICAS", Conf.idioma));
 				}
 				else if(i==1) {
-					this.botonesSeleccion[i].setText(Texto.get("BOTON2_SELECCVISTASESPECIFICAS", Conf.idioma));
+					this.botonesSeleccion[i].setText("  "+Texto.get("BOTON2_SELECCVISTASESPECIFICAS", Conf.idioma));
 					if(!DYV) {
 						this.botonesSeleccion[i].setEnabled(false);
 						
 					}
 				}
-				else if(i==2) {
-					this.botonesSeleccion[i].setText(Texto.get("BOTON3_SELECCVISTASESPECIFICAS", Conf.idioma));
-				}
+				
 				
 				panelBotones.add(this.botonesSeleccion[i]);
 				this.botonesSeleccion[i].addKeyListener(this);
@@ -234,7 +233,7 @@ public class CuadroPreguntaSeleccionVistasEspecificas extends Thread implements 
 
 			// Preparamos y mostramos cuadro
 			this.dialogo.getContentPane().add(this.panel);
-			this.dialogo.setTitle(Texto.get("PREG_SELECCVISTASESPECIFICAS", Conf.idioma));
+			this.dialogo.setTitle(" "+Texto.get("PREG_SELECCVISTASESPECIFICAS", Conf.idioma));
 
 			// dialogo.setSize(anchoCuadro,altoCuadro+(alto*numero));
 			this.dialogo.setSize(ANCHO_CUADRO, ALTO_CUADRO);
@@ -242,7 +241,19 @@ public class CuadroPreguntaSeleccionVistasEspecificas extends Thread implements 
 			this.dialogo.setLocation(coord[0], coord[1]);
 			this.dialogo.setResizable(false);
 			this.dialogo.setVisible(true);
-
+			//Eliminamos archivos inservibles (Todos los creados menos el necesario para lanzar la ejecución)
+			File directorioAplicacion = null;
+			try {
+				directorioAplicacion = new File(".");
+			} catch (Exception exc) {
+			}
+			File archivosParaEliminar[] = directorioAplicacion.listFiles();
+			for (int i = 0; i < archivosParaEliminar.length; i++) {
+				if (!archivosParaEliminar[i].getName().startsWith("SRec_")&&
+						archivosParaEliminar[i].getName().contains("codSRec_")) {
+					archivosParaEliminar[i].delete();
+				}
+			}
 		} else {
 			new CuadroError(this.ventana,
 					Texto.get("ERROR_CLASE", Conf.idioma), Texto.get(
@@ -264,16 +275,13 @@ public class CuadroPreguntaSeleccionVistasEspecificas extends Thread implements 
 	public void actionPerformed(ActionEvent e) {
 		if(this.botonesSeleccion[0]==e.getSource()) {
 			this.botonesSeleccion[1].setSelected(false);
-			this.botonesSeleccion[2].setSelected(false);
+			//this.botonesSeleccion[2].setSelected(false);
 		}
 		if(this.botonesSeleccion[1]==e.getSource()) {
 			this.botonesSeleccion[0].setSelected(false);
-			this.botonesSeleccion[2].setSelected(false);
+			//this.botonesSeleccion[2].setSelected(false);
 		}
-		if(this.botonesSeleccion[2]==e.getSource()) {
-			this.botonesSeleccion[0].setSelected(false);
-			this.botonesSeleccion[1].setSelected(false);
-		}
+		
 		
 		 else if (e.getSource() == this.cancelar) {
 			this.dialogo.setVisible(false);
@@ -412,7 +420,7 @@ public class CuadroPreguntaSeleccionVistasEspecificas extends Thread implements 
 				new CuadroSeleccionMetodos(this.clase, this.ventana, this.preprocesador);
 				
 			}
-			if(this.botonesSeleccion[2].isSelected()) {
+			/*if(this.botonesSeleccion[2].isSelected()) {
 				if (Conf.fichero_log) {
 					Logger.log_write("Habilitar vistas basadas en arboles");
 				}
@@ -420,7 +428,7 @@ public class CuadroPreguntaSeleccionVistasEspecificas extends Thread implements 
 				new CuadroSeleccionMetodosVE(this.clase, this.ventana, this.preprocesador);
 				
 				
-			}
+			}*/
 			
 			
 				
