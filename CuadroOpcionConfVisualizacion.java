@@ -1062,12 +1062,12 @@ public class CuadroOpcionConfVisualizacion extends Thread implements
 		linea2Codigo.add(tamFormaCodigo, BorderLayout.EAST);
 
 		panelFuenteCodigo.add(linea1Codigo, BorderLayout.NORTH);
-		panelFuenteCodigo.add(linea2Codigo, BorderLayout.SOUTH);		
+		panelFuenteCodigo.add(linea2Codigo, BorderLayout.CENTER);		
 
 		// *** Panel vista código traza Esto forma parte de la nueva pestaña Texto
 		JPanel panelFuenteTraza = new JPanel();
 		panelFuenteTraza.setBorder(new TitledBorder(textos[60]));
-		panelFuenteTraza.setLayout(new BorderLayout());
+		panelFuenteTraza.setLayout(new GridBagLayout());
 
 		JLabel etiqFuenteTraza = new JLabel(textos[58] + "   ");
 		JLabel etiqTFTraza = new JLabel(textos[59]);
@@ -1113,18 +1113,37 @@ public class CuadroOpcionConfVisualizacion extends Thread implements
 		JPanel linea1Traza = new JPanel();
 		linea1Traza.setLayout(new BorderLayout());
 		linea1Traza.add(etiqFuenteTraza, BorderLayout.WEST);
-		linea1Traza.add(this.fuentesTraza, BorderLayout.CENTER);
+		linea1Traza.add(this.fuentesTraza, BorderLayout.EAST);
 		
 		Dimension dPanelTrazas = new Dimension();
-		dPanelTrazas.setSize(150, 70);
+		dPanelTrazas.setSize(150, 70);//70);
 		
 		JPanel linea2Traza = new JPanel();
 		linea2Traza.setLayout(new BorderLayout());
 		linea2Traza.add(etiqTFTraza, BorderLayout.WEST);
-		linea2Traza.add(tamFormaTraza, BorderLayout.CENTER);
+		linea2Traza.add(tamFormaTraza, BorderLayout.EAST);
+		
+		constraints = new GridBagConstraints();
+		constraints.gridx = 0; 		// Empieza columna
+		constraints.gridy = 0; 		// Empieza fila
+		constraints.gridwidth = 1; 	// Ocupa columnas
+		constraints.gridheight = 1; // Ocupa filas	
+		//constraints.anchor = GridBagConstraints.NORTH;
+		constraints.fill = GridBagConstraints.BOTH;
+		constraints.weighty = 1;
+		constraints.weightx = 1;
+		GridBagConstraints constraints2 = new GridBagConstraints();
+		constraints2.gridx = 0; 		// Empieza columna
+		constraints2.gridy = 1; 		// Empieza fila
+		constraints2.gridwidth = 1; 	// Ocupa columnas
+		constraints2.gridheight = 1; // Ocupa filas	;
+		constraints2.fill = GridBagConstraints.BOTH;
+		//constraints.anchor = GridBagConstraints.SOUTH;
+		constraints2.weighty = 1;
+		constraints2.weightx = 1;
+		panelFuenteTraza.add(linea1Traza,constraints);
+		panelFuenteTraza.add(linea2Traza,constraints2);//SOUTH
 		panelFuenteTraza.setPreferredSize(dPanelTrazas);
-		panelFuenteTraza.add(linea1Traza, BorderLayout.NORTH);
-		panelFuenteTraza.add(linea2Traza, BorderLayout.SOUTH);
 		
 		constraints = new GridBagConstraints();
 		constraints.gridx = 0; 		// Empieza columna
@@ -1154,31 +1173,31 @@ public class CuadroOpcionConfVisualizacion extends Thread implements
 		constraints.weighty = 1;
 
 		this.pestanas.add(textos[67], panelPestana5);
-		
+
 		//Pestaña 6
 		// Panel Izquierda
 				JPanel panelIzquierda4 = new JPanel();
 				panelIzquierda4.setLayout(new GridBagLayout());
-			
+
 				// Panel colores
-				
+
 				JPanel panelSeleccionColores4 = new JPanel();
 				panelSeleccionColores4.setBorder(new TitledBorder(textos[0]));
 				//panelSeleccionColores3.setPreferredSize(new Dimension(270, 300));
-				panelSeleccionColores4.setPreferredSize(new Dimension(230, 100));
-				
+				//panelSeleccionColores4.setPreferredSize(new Dimension(230, 50));
+
 				ButtonGroup bg4 = new ButtonGroup();
 				this.selectores4[0] = new JRadioButton(textos[1]);
 
 				this.selectores4[1] = new JRadioButton(textos[4]);
 
-			
-				
-			
+
+
+
 				this.selectores4[0].setSelected(true);
 
 				int numeroSelectoresVisibles2 = 0;
-				
+
 				for (int i = 0; i < NUM_SELECTORES_4; i++) {
 					//	TODO Esto hay que cambiarlo, eliminando los selectores, 
 					//	textos y códigos estos radio buttons, no ocultándolos
@@ -1193,9 +1212,9 @@ public class CuadroOpcionConfVisualizacion extends Thread implements
 					bg4.add(this.selectores4[i]);
 					panelSeleccionColores4.add(this.selectores4[i]);			
 				}
-				
+
 				panelSeleccionColores4.setLayout(new GridLayout(numeroSelectoresVisibles2, 1));
-				
+
 				this.cp.setValores(CREANDO_PANEL, 65);
 				JPanel panelFila4[] = new JPanel[NUM_SELECTORES_4];
 				for (int i = 0; i < NUM_SELECTORES_4; i++) {
@@ -1206,31 +1225,31 @@ public class CuadroOpcionConfVisualizacion extends Thread implements
 					panelFila4[i] = new JPanel();
 					panelFila4[i].setLayout(new BorderLayout());
 					panelFila4[i].add(this.selectores4[i], BorderLayout.WEST);
-					
+
 					this.etiqColores4[i] = new JLabel("");
 					this.etiqColores4[i].addMouseListener(this);
 					this.etiqColores4[i].setForeground(new Color(0, 0, 0));
 					this.etiqColores4[i].setBackground(new Color(0, 0, 0));
 					this.panelesColores4[i] = creaPanelColor(this.etiqColores4[i]);
 					this.panelesColores4[i].addMouseListener(this);
-					
+
 					panelFila4[i].add(this.panelesColores4[i], BorderLayout.EAST);
 					panelSeleccionColores4.add(panelFila4[i]);
-					
+
 				}
-				panelSeleccionColores4.setPreferredSize(new Dimension(230, 200));
+				panelSeleccionColores4.setPreferredSize(new Dimension(230,100));// 200));
 				//	Panel selección de tema
 				JPanel panelSeleccionTema4 = new JPanel();
 				//panelSeleccionTema3.setBorder(new TitledBorder(textos[71]));
 				panelSeleccionTema4.setBorder(new TitledBorder(textos[71]));
-				
+				panelSeleccionTema4.setPreferredSize(new Dimension(230,100));
 				panelSeleccionTema4.setLayout(new FlowLayout());
 				JPanel panelSeleccion = new JPanel();
 				//panelSeleccionTema3.setBorder(new TitledBorder(textos[71]));
 				panelSeleccion.setBorder(new TitledBorder(textos[71]));
-				
+
 				panelSeleccion.setLayout(new FlowLayout());
-				
+
 				comboThemes = new JComboBox<String>();		
 				comboThemes.setName("comboThemes");
 				comboThemes.addItem(textos[72]);
@@ -1239,50 +1258,54 @@ public class CuadroOpcionConfVisualizacion extends Thread implements
 				comboThemes.addItem(textos[75]);
 				comboThemes.addItem(textos[76]);
 				comboThemes.addItem(textos[77]);
-				
+
 				comboThemes.addActionListener(this);
 				comboThemes.addKeyListener(this);
-				
+
 				panelSeleccionTema4.add(comboThemes);
 				//	Añadimos a panel izquierdo
 
-				GridBagConstraints constraints2 = new GridBagConstraints();
+				 constraints2 = new GridBagConstraints();
 				constraints2.gridx = 0; 
 				constraints2.gridy = 0; 
 				
 				constraints2.gridwidth = 1;
 				constraints2.gridheight = 1; 
-				constraints2.fill = GridBagConstraints.BOTH;
+				/*constraints2.fill = GridBagConstraints.VERTICAL;
+				
 				constraints2.weighty = 1;
-				constraints2.weightx = 1;
+				constraints2.weightx = 1;*/
 				panelIzquierda4.add(panelSeleccionColores4,constraints2);
 				
+				constraints = new GridBagConstraints();
+				constraints.fill = GridBagConstraints.BOTH;
 				constraints.gridx = 0; 		// Empieza columna
-				constraints.gridy = 1; 		// Empieza fila
+				/*constraints.gridy = 2; 		// Empieza fila
 				constraints.gridwidth = 1; 	// Ocupa columnas
 				constraints.gridheight = 1; // Ocupa filas	
-				constraints.anchor = GridBagConstraints.CENTER;
-				constraints.fill = GridBagConstraints.BOTH;
+				//constraints.anchor = GridBagConstraints.CENTER;
+				constraints.fill = GridBagConstraints.VERTICAL;
 				constraints.weighty = 1;
-				constraints2.weightx = 1;
-				
-				
-				panelIzquierda4.add(panelFuenteTraza, constraints);
-				
+				constraints.weightx = 1;
+				*///panelIzquierda4.add(panelSeleccionColores4,constraints);
+				panelIzquierda4.add(panelFuenteTraza,constraints);
+
 				constraints2 = new GridBagConstraints();
 				constraints2.gridx = 0; 
 				constraints2.gridy = 2; 
 				constraints2.gridwidth = 1;
 				constraints2.gridheight = 1; 
 				constraints2.fill = GridBagConstraints.BOTH;
+				constraints2.weighty = 1;
+				constraints2.weightx = 1;
 				panelIzquierda4.add(panelSeleccionTema4, constraints2);
-				
+
 				this.cp.setValores(CREANDO_PANEL, 55);
 
 				// Panel Derecha
 				JPanel panelDerecha4 = new JPanel();
 				panelDerecha4.setLayout(new BorderLayout());
-				
+
 
 				// JColorChooser
 				this.jcc4 = new JColorChooser(new Color(0, 0, 0));
@@ -1314,7 +1337,6 @@ public class CuadroOpcionConfVisualizacion extends Thread implements
 		panelPestana6.add(panelIzquierda4, BorderLayout.WEST);
 		panelPestana6.add(panelDerecha4, BorderLayout.EAST);
 		this.pestanas.add(textos[78], panelPestana6);
-		
 		this.cp.setValores(CREANDO_PANEL, 90);
 		
 		this.pestanas.setToolTipTextAt(0, textos[62]);
