@@ -473,7 +473,7 @@ public class ContenedorArbol {
 				anchoNodo = anchoNodo + (anchoCeldaEstr * dimensiones[0]);
 
 				int posicAnchoInicial = puntoMedio - (anchoNodo / 2);
-				
+			
 				posicAnchoInicial=  posicAnchoInicial
 						+ (dimensiones[0] * anchoCeldaEstr)+(int) (GraphConstants
 							.getSize(this.entrada.getAttributes()).getWidth())+4;
@@ -487,11 +487,11 @@ public class ContenedorArbol {
 										.getAttributes()).getMaxY());
 				posicAnchoInicial = puntoMedio - (anchoNodo / 2);
 				
-				
+				if (objetoNivel.getNivelExacto(this.nivel) > posicAnchoInicial) {
 					posicAnchoInicial = objetoNivel.getNivelExacto(this.nivel)
 							+ Conf.sepH + anchoCeldaEstr * dimensiones[0]
 									+ espacioInicial;
-				
+				}
 				if (altoEstructura > 2)// Si estructura es más alta que celdas E
 					// y S
 				{
