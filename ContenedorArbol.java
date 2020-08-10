@@ -1,5 +1,6 @@
 package grafica;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Rectangle;
@@ -16,6 +17,7 @@ import org.jgraph.graph.GraphConstants;
 
 import paneles.PanelArbol;
 import utilidades.NombresYPrefijos;
+import ventanas.Ventana;
 import conf.Conf;
 import datos.Estructura;
 import datos.RegistroActivacion;
@@ -465,18 +467,16 @@ public class ContenedorArbol {
 			int puntoMedio = (ladoDerecho + ladoIzquierdo) / 2;
 
 			if (this.ra.esDYV() && Conf.mostrarEstructuraEnArbol) {
+				
 				int anchoNodo = (int) (GraphConstants.getSize(this.entrada
 						.getAttributes()).getWidth());
 				anchoNodo = anchoNodo + (anchoCeldaEstr * dimensiones[0]);
 
 				int posicAnchoInicial = puntoMedio - (anchoNodo / 2);
-
-				if (objetoNivel.getNivelExacto(this.nivel) > posicAnchoInicial) {
-					posicAnchoInicial = objetoNivel.getNivelExacto(this.nivel)
-							+ Conf.sepH + anchoCeldaEstr * dimensiones[0]
-									+ espacioInicial;
-				}
-
+				 posicAnchoInicial=  posicAnchoInicial
+						+ (dimensiones[0] * anchoCeldaEstr)+(int) (GraphConstants
+							.getSize(this.entrada.getAttributes()).getWidth())+4;
+				 
 				this.ubicacionNodo_EstrSiHijos(dimensiones, posicAnchoInicial);
 
 				maximoAltoUsado = Math.max(
@@ -484,7 +484,13 @@ public class ContenedorArbol {
 						(int) GraphConstants.getBounds(
 								this.celdasEstr[this.celdasEstr.length - 1]
 										.getAttributes()).getMaxY());
-
+				posicAnchoInicial = puntoMedio - (anchoNodo / 2);
+				
+				if (objetoNivel.getNivelExacto(this.nivel) > posicAnchoInicial) {
+					posicAnchoInicial = objetoNivel.getNivelExacto(this.nivel)
+							+ Conf.sepH + anchoCeldaEstr * dimensiones[0]
+									+ espacioInicial;
+				}
 				if (altoEstructura > 2)// Si estructura es más alta que celdas E
 					// y S
 				{
@@ -584,7 +590,22 @@ public class ContenedorArbol {
 		{
 			// Si las hay, situamos en el grafo las celdas de la estructura
 			if (this.ra.esDYV() && Conf.mostrarEstructuraEnArbol) {
-				this.ubicacionNodo_EstrNoHijos(dimensiones);
+				
+				/*	int ladoIzquierdo = this.contenedoresHijos[0].posicLadoIzquierdo();
+				int ladoDerecho = this.contenedoresHijos[this.contenedoresHijos.length - 1]
+						.posicLadoDerecho();
+				int puntoMedio = (ladoDerecho + ladoIzquierdo) / 2;*/
+				int anchoNodo = (int) (GraphConstants.getSize(this.entrada
+						.getAttributes()).getWidth());
+				anchoNodo = anchoNodo + (anchoCeldaEstr * dimensiones[0]);
+				int posicAnchoInicial = maximoAnchoUsado 
+						 - (anchoNodo / 2);
+				 posicAnchoInicial=  posicAnchoInicial
+						+ (dimensiones[0] * anchoCeldaEstr)+(int) (GraphConstants
+							.getSize(this.entrada.getAttributes()).getWidth());
+				 
+				
+				this.ubicacionNodo_EstrNoHijos(dimensiones,anchoNodo);
 
 				maximoAltoUsado = Math.max(
 						maximoAltoUsado,
@@ -725,7 +746,8 @@ public class ContenedorArbol {
 							this.celdasEstr[(dimensiones[0] * i) + j]
 									.getAttributes(),
 									new Rectangle(
-											posicAnchoInicial
+											
+											posicAnchoInicial 
 											+ (j * anchoCeldaEstr),
 											this.posic0Nivel()
 											+ (alturaCeldaEstr * (i + (altoEstructura - dimensiones[1]) / 2)),
@@ -736,7 +758,8 @@ public class ContenedorArbol {
 		} else {
 			for (int i = 0; i < dimensiones[0]; i++) {
 				GraphConstants.setBounds(this.celdasEstr[i].getAttributes(),
-						new Rectangle(posicAnchoInicial + (i * anchoCeldaEstr),
+					//	new Rectangle(posicAnchoInicial + (i * anchoCeldaEstr),
+								new Rectangle(posicAnchoInicial +   (i * anchoCeldaEstr),
 								this.posic0Nivel()
 								+ ((int) (alturaCeldaEstr * 1.5)),
 								anchoCeldaEstr, alturaCeldaEstr));
@@ -750,7 +773,8 @@ public class ContenedorArbol {
 	 * @param dimensiones
 	 *            Dimensiones de la estructura (filas, columnas)
 	 */
-	private void ubicacionNodo_EstrNoHijos(int[] dimensiones) {
+	private void ubicacionNodo_EstrNoHijos(int[] dimensiones,int posAncho) {
+		int posicAnchoInicial =posAncho;
 		if (dimensiones.length == 2) {
 			for (int i = 0; i < dimensiones[0]; i++) {
 				for (int j = 0; j < dimensiones[1]; j++) {
@@ -759,18 +783,20 @@ public class ContenedorArbol {
 							this.celdasEstr[(dimensiones[0] * i) + j]
 									.getAttributes(),
 									new Rectangle(
+											//posicAnchoInicial +
 											maximoAnchoUsado + Conf.sepH
 											+ (j * anchoCeldaEstr),
 											this.posic0Nivel()
 											+ (alturaCeldaEstr * (i + (altoEstructura - dimensiones[1]) / 2)),
 											anchoCeldaEstr, alturaCeldaEstr));
-
+				
 				}
 			}
 		} else {
 			for (int i = 0; i < dimensiones[0]; i++) {
 				GraphConstants.setBounds(this.celdasEstr[i].getAttributes(),
-						new Rectangle(maximoAnchoUsado + Conf.sepH
+						new Rectangle(//posicAnchoInicial +
+								maximoAnchoUsado + Conf.sepH
 								+ (i * anchoCeldaEstr), this.posic0Nivel()
 								+ ((int) (alturaCeldaEstr * 1.5)),
 								anchoCeldaEstr, alturaCeldaEstr));
@@ -1161,8 +1187,8 @@ public class ContenedorArbol {
 			}
 			GraphConstants.setOpaque(this.salida.getAttributes(), true); // Normales
 			GraphConstants.setForeground(this.salida.getAttributes(),
-					//Conf.colorFSalida);
-					Conf.colorFEntrada);
+					Conf.colorFSalida);
+				//	Conf.colorFEntrada);
 			if (this.ra.estaIluminado()) {
 				GraphConstants.setBackground(this.salida.getAttributes(),
 						Conf.colorIluminado);
@@ -1298,7 +1324,7 @@ public class ContenedorArbol {
 	 * Se encarga de generar los bordes de las celdas de entrada y salida.
 	 */
 	private void generacionBordes() {
-		/*if (this.marcoEntrada != null) {
+		if (this.marcoEntrada != null) {
 			GraphConstants.setOpaque(this.marcoEntrada.getAttributes(), false);
 			GraphConstants.setBackground(this.marcoEntrada.getAttributes(),
 					Conf.colorPanel);
@@ -1376,7 +1402,7 @@ public class ContenedorArbol {
 						false);
 			}
 		}
-	*/}
+	}
 
 	/**
 	 * Genera las aristas entre los distintos nodos del árbol.
@@ -1638,7 +1664,7 @@ public class ContenedorArbol {
 			int indices[], String es, int nivel, boolean visible) {
 		DefaultGraphCell[] celdas = null;
 		int dimensiones[] = e.dimensiones();
-
+//dimensiones[-1]=0;
 		String clase = e.getTipo().getClass().getName();
 		String texto;
 
@@ -1794,17 +1820,31 @@ public class ContenedorArbol {
 								Conf.colorC1AEntrada);
 					}
 				} else {
-					GraphConstants.setForeground(celdas[posic].getAttributes(),
-							Conf.colorFSalida);
+				String tipo=Ventana.thisventana.claseAlgoritmo.getMetodoPrincipal().getTipo();
+				Color colores[]= new Color[3];	
+				if(tipo.equals("void")) {
+					colores[0]=Conf.colorFSalida;
+					colores[1]=Conf.colorC1Salida;
+					colores[2]=Conf.colorC1ASalida;
+					
+				}else 
+				{
+					colores[0]=Conf.colorFEntrada;
+					colores[1]=Conf.colorC1Entrada;
+					colores[2]=Conf.colorC1AEntrada;
+					
+				}
+				GraphConstants.setForeground(celdas[posic].getAttributes(),
+							colores[0]);
 					if (indices.length > 0 && i >= indices[0]
 							&& i <= indices[1]) {
 						GraphConstants.setBackground(
 								celdas[posic].getAttributes(),
-								Conf.colorC1Salida);
+								colores[1]);
 					} else {
 						GraphConstants.setBackground(
 								celdas[posic].getAttributes(),
-								Conf.colorC1ASalida);
+								colores[2]);
 					}
 				}
 
