@@ -473,7 +473,8 @@ public class ContenedorArbol {
 				anchoNodo = anchoNodo + (anchoCeldaEstr * dimensiones[0]);
 
 				int posicAnchoInicial = puntoMedio - (anchoNodo / 2);
-				 posicAnchoInicial=  posicAnchoInicial
+				
+				posicAnchoInicial=  posicAnchoInicial
 						+ (dimensiones[0] * anchoCeldaEstr)+(int) (GraphConstants
 							.getSize(this.entrada.getAttributes()).getWidth())+4;
 				 
@@ -486,11 +487,11 @@ public class ContenedorArbol {
 										.getAttributes()).getMaxY());
 				posicAnchoInicial = puntoMedio - (anchoNodo / 2);
 				
-				if (objetoNivel.getNivelExacto(this.nivel) > posicAnchoInicial) {
+				
 					posicAnchoInicial = objetoNivel.getNivelExacto(this.nivel)
 							+ Conf.sepH + anchoCeldaEstr * dimensiones[0]
 									+ espacioInicial;
-				}
+				
 				if (altoEstructura > 2)// Si estructura es más alta que celdas E
 					// y S
 				{
@@ -783,7 +784,7 @@ public class ContenedorArbol {
 							this.celdasEstr[(dimensiones[0] * i) + j]
 									.getAttributes(),
 									new Rectangle(
-											//posicAnchoInicial +
+											posicAnchoInicial +
 											maximoAnchoUsado + Conf.sepH
 											+ (j * anchoCeldaEstr),
 											this.posic0Nivel()
@@ -795,8 +796,7 @@ public class ContenedorArbol {
 		} else {
 			for (int i = 0; i < dimensiones[0]; i++) {
 				GraphConstants.setBounds(this.celdasEstr[i].getAttributes(),
-						new Rectangle(//posicAnchoInicial +
-								maximoAnchoUsado + Conf.sepH
+						new Rectangle(posicAnchoInicial +maximoAnchoUsado + Conf.sepH
 								+ (i * anchoCeldaEstr), this.posic0Nivel()
 								+ ((int) (alturaCeldaEstr * 1.5)),
 								anchoCeldaEstr, alturaCeldaEstr));
@@ -1720,37 +1720,36 @@ public class ContenedorArbol {
 					if (visible) {
 						this.marcoCelda(celdas[posic].getAttributes(), false);
 					}
-					if (es.equals("entrada")) {
+					String tipo=Ventana.thisventana.claseAlgoritmo.getMetodoPrincipal().getTipo();
+					Color colores[]= new Color[3];	
+					if(tipo.equals("void")) {
+						colores[0]=Conf.colorFSalida;
+						colores[1]=Conf.colorC1Salida;
+						colores[2]=Conf.colorC1ASalida;
+						
+					}else 
+					{
+						colores[0]=Conf.colorFEntrada;
+						colores[1]=Conf.colorC1Entrada;
+						colores[2]=Conf.colorC1AEntrada;
+						
+					}
+					
 						GraphConstants.setForeground(
 								celdas[posic].getAttributes(),
-								Conf.colorFEntrada);
+								colores[0]);
 						if (indices.length > 0 && i >= indices[0]
 								&& i <= indices[1] && j >= indices[2]
 										&& j <= indices[3]) {
 							GraphConstants.setBackground(
 									celdas[posic].getAttributes(),
-									Conf.colorC1Entrada);
+									colores[1]);
 						} else {
 							GraphConstants.setBackground(
 									celdas[posic].getAttributes(),
-									Conf.colorC1AEntrada);
+									colores[2]);
 						}
-					} else {
-						GraphConstants.setForeground(
-								celdas[posic].getAttributes(),			
-					Conf.colorFSalida);
-						if (indices.length > 0 && i >= indices[0]
-								&& i <= indices[1] && j >= indices[2]
-										&& j <= indices[3]) {
-							GraphConstants.setBackground(
-									celdas[posic].getAttributes(),
-									Conf.colorC1Salida);
-						} else {
-							GraphConstants.setBackground(
-									celdas[posic].getAttributes(),
-									Conf.colorC1ASalida);
-						}
-					}
+					
 					GraphConstants.setSize(celdas[posic].getAttributes(),
 							new Dimension(anchoCeldaEstr, alturaCeldaEstr));
 
