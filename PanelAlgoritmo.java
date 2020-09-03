@@ -55,7 +55,8 @@ public class PanelAlgoritmo extends JPanel implements ChangeListener, ComponentL
 	private static PanelCompilador pCompilador;
 	private static PanelGrafo pGrafo;
 	private static PanelCodigoBotones pCodigoBotones;
-
+	
+	private static PanelCoordenadas pCoordenadas;
 	private static PanelTraza pTraza;
 	private static PanelPila pPila;
 	private static PanelArbol pArbol;
@@ -1104,8 +1105,10 @@ public class PanelAlgoritmo extends JPanel implements ChangeListener, ComponentL
 	 * 
 	 * @param valor
 	 *            Valor de zoom.
+	 * @param tipo
+	 *            Necesario para realizar zoom en resultado Panel crono.
 	 */
-	public void refrescarZoom(int vista, int valor) {
+	public void refrescarZoom(int vista, int valor,int tipo) {
 		switch (vista) {
 		case 1:
 			if (pPila != null) {
@@ -1123,7 +1126,8 @@ public class PanelAlgoritmo extends JPanel implements ChangeListener, ComponentL
 			break;
 		case 2:
 			if (pCrono != null) {
-				pCrono.refrescarZoom(valor);
+				pCrono.refrescarZoom(valor,tipo);
+				
 				pCrono.visualizar();
 				pCrono.updateUI();
 			}
