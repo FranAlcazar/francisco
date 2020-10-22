@@ -1,6 +1,6 @@
 package datos;
 
-import java.io.File; 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -35,7 +35,6 @@ import conf.Conf;
 import cuadros.CuadroError;
 import cuadros.CuadroErrorCompilacion;
 import cuadros.CuadroPreguntaSeleccMetodosDYV;
-import cuadros.CuadroPreguntaSeleccionVistasEspecificas;
 import cuadros.CuadroProgreso;
 import cuadros.ValoresParametros;
 
@@ -241,13 +240,11 @@ public class Preprocesador extends Thread {
 
 				// Borramos ficheros que puedan interferir en proceso de
 				// ejecución
-				
-			
-			/*	File file = new File(fichero[0] + ficheroclass);
+				File file = new File(fichero[0] + ficheroclass);
 				file.delete();
 				file = new File(ficheroclass);
-				file.delete();*/
-				File file = new File(fichero[0] + ficheroxml);
+				file.delete();
+				file = new File(fichero[0] + ficheroxml);
 				file.delete();
 				file = new File(ficheroxml);
 				file.delete();
@@ -511,16 +508,13 @@ public class Preprocesador extends Thread {
 
 						Ventana.thisventana.habilitarOpcionesDYV(false);
 						if (this.claseAlgoritmo.potencialMetodoDYV()) {
-							
-							new CuadroPreguntaSeleccionVistasEspecificas(
-									this.claseAlgoritmo, Ventana.thisventana,
-									this,true);
+							new CuadroPreguntaSeleccMetodosDYV(
+									Ventana.thisventana, this.claseAlgoritmo,
+									this);
 						} else { // Si no lo tiene, directamente procesamos
-							new CuadroPreguntaSeleccionVistasEspecificas(
-									this.claseAlgoritmo, Ventana.thisventana,
-									this,false);
+							Ventana.thisventana.habilitarOpcionesDYV(false);
+							this.fase2(this.claseAlgoritmo);
 						}
-					
 					}
 				}
 			}
@@ -642,9 +636,9 @@ public class Preprocesador extends Thread {
 
 			file = new File("SRec_" + fich2);
 			file.delete();
-		/*	file = new File(ficherosinex + ".class");
+			file = new File(ficherosinex + ".class");
 			file.delete();
-*/
+
 			if (!this.compilado) {
 				this.cuadroProgreso.cerrar();
 				if (Conf.fichero_log) {
